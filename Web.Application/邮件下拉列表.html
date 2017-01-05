@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>邮件下拉列表</title>
+    <style type="text/css">
+        .emailist{border:1px solid #bdbdbd; border-radius: 4px; background-color:#fff; color:#666; font-size:14px; list-style-type:0; padding:0; margin:0; overflow:hidden;}
+        .emailist li{padding:2px 11px; cursor:pointer;}
+        .emailist .on, .emailist li:hover{background-color:#eee;}
+    </style>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery.mailAutoComplete-4.0.js"></script>
+    <script>
+        $(function () {
+
+            $("input[type='text']").mailAutoComplete().blur(function () {
+                if (t) {
+                    clearTimeout(t);
+                }
+                var element = $("input[type='text']");
+                element.closest("dd").next().hide();
+                if (!element.val()) {
+                    element.closest("dd").next().html("<span>请输入邮箱</span>");
+                    return false;
+                }
+                if (!isEmail(element.val())) {
+                    element.closest("dd").next().html("<span>请输入正确的邮箱</span>");
+                    return false;
+                }
+                $.ajax({
+                    url: 'Ashx/Login.ashx',
+                    type: 'post',
+                    data: { "action": "checkEmail", "name": element.val() },
+                    success: function(data) {
+                        if (data) {
+                            if (data == "-1") {
+                                element.closest("dd").next().html("");
+                                return false;
+                            }
+                            if (data == "1") {
+
+                                element.closest("dd").next().html("<span>邮箱已存在</span>");
+                                return false;
+                            }
+                        }
+                        alert("其他错误");
+                        return false;
+                    }
+                });
+                var t = setTimeout(function () {
+                    element.closest("dd").next().show();
+                }, 500);
+         
+
+                return false;
+            });
+            //    .focusin(function () {
+            //    var element = $("input[type='text']");
+            //    element.closest("dd").next().html("");
+            //});
+            function isEmail(str) {
+                var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+                return reg.test(str);
+            }
+        });
+    </script>
+</head>
+<body>
+    <dl>
+        <dd style="float:left"><div width="auto"><input type="text" autocomplete="off" /></div></dd>
+        <dd style="color:red;float:left"><span></span></dd>
+        <dd></dd>
+    </dl>
+</body>
+</html>

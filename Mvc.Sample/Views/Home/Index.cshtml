@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "~/Views/Shared/_EasyUiLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<!--
+<form method="post" action="/Home/Index">
+    <input name="stu[0].Id" type="text" value="1" />
+    <input name="stu[1].Id" type="text" value="2" />
+    <input name="list[0].Id" type="text" value="1" />
+    <input name="list[1].Id" type="text" value="2" />
+    <input type="submit"  value="提交"/>
+</form>
+-->
+<div>
+    <input type="button" value="导出" id="btn-export" />
+</div>
+<table id="grid"></table>
+@section script{
+    <script src="~/Scripts/jquery.util.js"></script>
+    <script>
+        ; (function () {
+            function exporter(opt) {
+                var defaultOptions = {
+                    action: window.location.protocol + '//' + window.location.host + '/home/GetJson',//目标地址
+                    dataAction: "/home/download",
+                    dataParams: {
+                        page: 1
+                    },//查询参数
+                    titles: [[]],
+                    fileType: 'xls',//下载文件类型
+                    compressType: 'none'
+                };
+                this.opt = $.extend({}, defaultOptions, opt);
+            }
+            var proto = exporter.prototype;
+            proto.download = function () {
+                var self = this;
+                self.getTitles();
+                var tmpId = 'iframe{0}'.format(new Date().getTime().toString());
+                var $iframe = $('<iframe style="display:block" id="{0}"></iframe>'.format(tmpId)).appendTo('body');
+                var sb = new stringBuffer();
+                sb.append('<html><body><form method="post" action="{0}">'.format(self.opt.dataAction));
+                $.each(self.opt, function (key, val) {
+                    sb.append('<input type="hidden" name="{0}" value=\'{1}\'>'.format(key, (typeof val === 'object' ? JSON.stringify(val) : val)));
+                });
+                sb.append('</form></body></html>');
+                var iframeDoc = getDocument();
+                iframeDoc.open();
+                iframeDoc.write(sb.toString());
+                iframeDoc.close();
+                if (iframeDoc.forms[0]) {
+                    iframeDoc.forms[0].submit();
+                }
+                function getDocument() {
+
+                    var doc;
+                    var iframeObject = document.getElementById(tmpId); // MUST have an ID
+                    if (iframeObject.contentDocument) { // DOM
+                        doc = iframeObject.contentDocument;
+                    }
+                    else if (iframeObject.contentWindow) { // IE win
+                        doc = iframeObject.contentWindow.document;
+                    }
+                    return doc;
+                }
+            }
+            /**获取绑定列
+            */
+            proto.getTitles = function () {
+                var self = this;
+                var gridOpt = $('#grid').datagrid('options');
+                //var length = Math.max(gridOpt.frozenColumns.length, gridOpt.columns.length);
+                var length = gridOpt.columns.length;
+                var titles = [[]];
+                for (var i = 0; i < length; i++) {
+                    //titles[i] = (gridOpt.frozenColumns[i] || []).concat(gridOpt.columns[i] || [])
+                    titles[i] = gridOpt.columns[i];
+                }
+                self.opt.titles = titles;
+            }
+            /**设置页数
+            */
+            proto.setPage = function (page, rows) {
+                var self = this;
+                self.opt.dataParams.page = page;
+                self.opt.dataParams.rows = rows;
+            }
+            window.exporter = exporter;
+        })();
+
+
+
+    </script>
+    <script>
+        $(function () {
+            $('#grid').datagrid({
+                nowrap: false,
+                striped: true,
+                url: '/home/getjson',
+                pagination: true,
+                rownumbers: false,
+                frozenColumns: [[{ field: 'Id', checkbox: true, title: '' }]],
+                columns: [
+                    [{ field: 'itemid', title: 'Item ID', rowspan: 3, width: 80, sortable: true },
+                     { field: 'productid', title: 'Product ID', rowspan: 3, width: 80, sortable: true },
+                     { title: 'Item Details', colspan: 8 }],
+                    [{ title: 'List Price', colspan: 2 },
+                    { title: 'Unit Cost', colspan: 2 },
+                    { title: 'Attribute', colspan: 2 },
+                    { title: 'Status', colspan: 2 }],
+                    [
+                    { field: 'listprice', title: 'List Price' },
+                    { field: 'listprice', title: 'List Price' },
+                    { field: 'unitcost', title: 'Unit Cost' },
+                    { field: 'unitcost', title: 'Unit Cost' },
+                    { field: 'attr1', title: 'Attribute' },
+                    { field: 'attr1', title: 'Attribute' },
+                    { field: 'status', title: 'Status' },
+                    { field: 'status', title: 'Status' }
+                    ]
+                ]
+            });
+
+
+            $('#btn-export').on('click', function () {
+                new exporter().download();
+            });
+        });
+    </script>
+}
+

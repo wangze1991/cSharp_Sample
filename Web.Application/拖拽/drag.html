@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>drag</title>
+    <script src="../js/lib/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div style="overflow-y:auto;height:1000px;">
+        <div class="post">
+            <h2 class="postTitle">Javascript自由拖拽类</h2>
+            <div class="postText">
+                <div id="cnblogs_post_body">
+                    <div style="width: 600px; height: 20px; margin: 10px 0;">
+                        拖拽状态：<span id="x">x:0</span>, <span id="y">y:0</span>
+                    </div>
+                    <div style="border: 5px solid gray; width: 600px; height: 300px;" id="container">
+                        <div style="width: 100px; height: 50px; background: gold; text-align: center; position: absolute; left: 0px; top: 0px;" id="d1">
+
+                        </div>
+                    </div>
+                    <div style="width: 600px;" id="setting">
+                        <input name="flag" value="1" type="radio" id="f1" /><label for="f1">任意方向</label>
+                        <input name="flag" value="2" type="radio" id="f2" /><label for="f2">水平方向</label>
+                        <input name="flag" value="3" type="radio" id="f3" /><label for="f3">垂直方向</label>
+                        <input name="flag" value="4" type="radio" id="f4" /><label for="f4">停止拖拽</label>
+                        <input name="flag" value="5" type="radio" id="f5" /><label for="f5">开启拖拽</label>
+                        <input name="flag" value="6" type="radio" id="f6" /><label for="f6">恢复初始状态</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            
+            //var box = $('#d1');
+            //$(function () {
+            //    box.on('mouseover', function () {
+            //        $(this).css('cursor', 'move');
+            //    }).on('mouseout', function () {
+            //        $(this).css('cursor', 'default');
+            //    }).on('mousedown', function (e) {
+            //        var diffX = e.pageX - $(this).offset().left;
+            //        var diffY = e.pageY - $(this).offset().top;
+            //        $(this).bind('mousemove', mousemove);
+            //        $(this).bind('mouseup', mouseup);
+            //        function mousemove(ev) {
+            //            var x = ev.pageX - diffX;
+            //            var y = ev.pageY - diffY;
+            //                $(this).css({
+            //                    'left':ev.pageX-diffX,
+            //                    'top':ev.pageY-diffY
+            //                })
+            //                $('#x').text('x:' + x);
+            //                $('#y').text('y:' + y);
+            //        }
+            //    });
+
+            //});
+
+            //function mouseup(e){
+            //    $(this).unbind('mousemove');
+            //    $(this).unbind('mouseup');
+            //}
+
+            function drag(opt) {
+                this.target = opt.target;
+                $(this.target).bind('mouseover', mouseOver);
+                $(this.target).bind('mouseout', mouseOut);
+                $(this.target).bind('mousedown', function (e) {
+                    var self = $(this);
+                    var diffX = e.pageX - self.offset().left;
+                    var diffY = e.pageY - self.offset().top;
+                    $(this).bind('mousemove', function (ev) {
+                        //mouseMove.call(this, ev, e.clientX - self.offset().left, e.clientY - self.offset().top);
+                        console.log('动态x:' + (ev.pageX - e.pageX + self.offset().left) + '  ' + 'y: ' + (ev.pageY - e.pageY + self.offset().top));
+                        console.log('x:' + (ev.pageX-diffX) + ' y: ' + (ev.pageY-diffY));
+                        var item = $(this);
+                        //item.css({
+                        //    'left': ev.clientX - e.clientX +self.offset().left,
+                        //    'top': ev.clientY - e.clientY +self.offset().top
+                        //});
+
+                        item.css({
+                            'left': ev.pageX - diffX,
+                            'top': ev.pageY - diffY
+                        });
+                    });
+                    $(this).bind('mouseup', mouseUp);
+
+                });
+            }
+            var dragProto = drag.prototype;
+  
+            function mouseOver() {
+                $(this).css('cursor', 'move');
+            }
+            function mouseOut() {
+                $(this).css('cursor', 'default');
+                $(this).unbind('mousemove');
+                //$(this).unbind('mouseup');
+            }
+            function mouseDown(e) {
+                var self = $(this);
+                $(this).bind('mousemove', function (ev) {
+                    mouseMove.call(this, ev, e.clientX - self.offset().left, e.clientY - self.offset().top);
+                })
+                $(this).bind('mouseup', mouseUp);
+            }
+            function mouseMove(e, x, y) {
+                var self = $(this);
+                self.css({
+                    'left': e.clientX - x,
+                    'top': e.clientY - y
+                });
+                
+            }
+            function mouseUp() {
+                $(this).unbind('mousemove');
+                $(this).unbind('mouseup');
+            }
+            window.drag = drag;
+        })();
+        $(function () {
+            var d = new drag({ 'target': '#d1' });
+            $(window).scroll(function (e) {
+                if ($(document).scrollTop()+$(window).height()==$(document).height()) {
+                    $('body').append($('.post').parent().html());
+                }
+            });
+        });
+    </script>
+</body>
+</html>

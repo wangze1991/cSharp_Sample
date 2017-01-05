@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nk7H05NoXGajy7q1TlQlAm6j"></script>
+</head>
+<body>
+    <div id="mapContainer" style="width:500px;height:700px;">
+        
+    </div>
+    <script type="text/javascript">
+        var map = new BMap.Map("mapContainer");
+        map.centerAndZoom("常州", 18);
+        map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+        map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+        map.addEventListener("click", function(e) {
+            //alert(e.point.lng + "," + e.point.lat);
+            var allOverLay = map.getOverlays();
+            for (var i = 0; i < allOverLay.length; i++) {
+                map.removeOverlay(allOverLay[i]);
+            }
+            var point = new BMap.Point(e.point.lng, e.point.lat);
+            var marker = new BMap.Marker(point);
+            map.addOverlay(marker);
+        });
+
+    </script>
+</body>
+</html>

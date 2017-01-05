@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>日历控件</title>
+    <meta charset="utf-8" />
+    <link href="css/calender.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="calender">
+        <div class="calenderContent">
+            <div class="calenderTable">
+                <div class="getyear">
+                    <a class="preMonth" id="preMonth">上一月</a>
+                    <select id="year">
+                        <option>1949</option>
+                        <option>1950</option>
+                        <option>1951</option>
+                        <option>1952</option>
+                    </select>
+                    <select id="month">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <a class="nextMonth" id="nextMonth">下一月</a>
+                </div>
+                <div class="tablebg">
+                    <table id="calender" class="calendertb" cellpadding="0" cellspacing="1">
+                        <tbody>
+                            <tr bgcolor="#D6D6D6">
+                                <th class="weekend">日</th>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th class="weekend noborder">六</th>
+                            </tr>
+                            <tr>
+                                <td class="weekend2">&nbsp;</td>
+                                <td class="">&nbsp;</td>
+                                <td class="">&nbsp;</td>
+                                <td class="">1</td>
+                                <td class="">2</td>
+                                <td class="">3</td>
+                                <td class="">4</td>
+                            </tr>
+                            <tr>
+                                <td class="">5</td>
+                                <td class="">6</td>
+                                <td class="">7</td>
+                                <td class="">8</td>
+                                <td class="">9</td>
+                                <td class="">10</td>
+                                <td class="">11</td>
+                            </tr>
+                            <tr>
+                                <td class="">12</td>
+                                <td class="">13</td>
+                                <td class="">14</td>
+                                <td class="">15</td>
+                                <td class="">16</td>
+                                <td class="">17</td>
+                                <td class="">18</td>
+                            </tr>
+                            <tr>
+                                <td class="">19</td>
+                                <td class="">20</td>
+                                <td class="">21</td>
+                                <td class="">22</td>
+                                <td class="">23</td>
+                                <td class="">24</td>
+                                <td class="">25</td>
+                            </tr>
+                            <tr>
+                                <td class="">26</td>
+                                <td class="">27</td>
+                                <td class="">28</td>
+                                <td class="tdtoday">29</td>
+                                <td class="">30</td>
+                                <td class="">31</td>
+                                <td class="">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="">&nbsp;</td>
+                                <td class="">&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td class="weekend2">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery.utility.js"></script>
+    <script>
+        $(function () {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var week = ['日', '一', '二', '三', '四', '五', '六'];
+            console.log(week.join(' '));
+            var days = GetTotalDays(date);
+            var tmp = outPutBlanks(new Date(year, month, 1).getDay());
+            for (var i = 1; i <= days; i++) {
+                var tmpDate = new Date(year, month, i);
+                var weekOfDay = tmpDate.getDay();
+                tmp = formatOutPut(weekOfDay, i, days, tmp);
+            }
+        });
+
+        function formatOutPut(weekOfDay, day, maxDay, tmp) {
+            if (weekOfDay === 6 || day === maxDay) {
+                tmp += formatDay(day) + ' ';
+                console.log(tmp);
+                tmp = '';
+            } else {
+                tmp += formatDay(day) + ' ';
+                // console.log(tmp);
+            }
+            return tmp;
+        }
+
+        /*
+        **格式化天数
+        */
+        function formatDay(day) {
+            if (day < 10) {
+                return ' ' + day.toString();
+            }
+            return day.toString();
+        }
+
+        /*
+        **输出几个空格
+        */
+        function outPutBlanks(number) {
+            console.log(number);
+            var str = '';
+            for (var i = 0; i < number; i++) {
+                str += '   ';
+            }
+            return str;
+        }
+        /*
+        **获取总的天数
+        */
+        function GetTotalDays(date) {
+            var year = date.getFullYear();
+            var february = 28;
+            if (year % 400 == 0 && (year % 4 == 0 && year % 100 != 0)) {
+                february = 29;
+            }
+            var list = [31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var month = date.getMonth();
+            return list[month];
+        }
+    </script>
+
+    <script>
+        (function ($) {
+
+            $.fn.calendar = function () {
+                return this.each(function (i, item) {
+                    var self = $(this);
+
+                });
+            }
+
+
+
+            function calendar(ele, opt) {
+                this.ele = ele;
+                this.opt = opt;
+            }
+            var calendarProto = calendar.prototype;
+
+
+            calendarProto.createHtml = function () {
+             var $calender=$('<div class="calender"></div>');
+             var $table = $('<table id="calender" class="calendertb" cellpadding="0" cellspacing="1"></table>');
+
+            }
+
+
+
+            /*
+            **获取一个月的天数
+            **@param date 日期
+            */
+            calendarProto.getTotalDay = function (date) {
+                var year = date.getFullYear();
+                var february = 28;
+                if (year % 400 == 0 && (year % 4 == 0 && year % 100 != 0)) {
+                    february = 29;
+                }
+                var list = [31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                var month = date.getMonth();
+                return list[month];
+            }
+
+
+
+
+        })(jQuery);
+
+
+    </script>
+</body>
+</html>

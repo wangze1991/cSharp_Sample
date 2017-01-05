@@ -1,0 +1,66 @@
+﻿.loading-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    overflow: hidden;
+    outline: 0;
+    /*background-color:gray;*/
+}
+.loading-mask .dialog {
+    width:600px;
+    margin:40px auto;
+}
+ .loading-mask .content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5)
+    }
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+@media(min-width:768px) {
+    .loading-mask > .dialog {
+        position: relative;
+    }
+}
+
+.theme-popover-mask {
+z-index: 9998;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+opacity:0.4;
+filter:alpha(opacity=40);
+display:none
+}
+.theme-popover {
+z-index:9999;
+position:fixed;
+top:50%;
+left:50%;
+width:660px;
+height:360px;
+margin:-180px 0 0 -330px;
+border-radius:5px;
+border:solid 2px #666;
+background-color:#fff;
+display:none;
+box-shadow: 0 0 10px #666;
+}
+

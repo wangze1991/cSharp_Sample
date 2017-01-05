@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="../css/modal/modal.css" rel="stylesheet" />
+</head>
+<body>
+    <!--<div class="loading-mask" style="text-align:center;">
+        <div class="dialog">
+            <div class="content">
+                这是遮罩层
+            </div>
+        </div>
+        
+    </div>-->
+    <button  id="btnLogin">提交</button>
+    <div class="theme-popover">
+        测试
+    </div>
+    <div class="theme-popover-mask"></div>
+    <script src="../js/lib/jquery-1.10.2.min.js">
+    </script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btnLogin').click(function () {
+                $('.theme-popover-mask').fadeIn('slow');
+                $('.theme-popover').slideDown(200);
+            });
+            $('.theme-poptit .close').click(function () {
+                $('.theme-popover-mask').fadeOut('slow');
+                $('.theme-popover').slideUp(200);
+            });
+        });
+    </script>
+</body>
+</html>

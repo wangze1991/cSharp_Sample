@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型绑定测试</title>
+
+</head>
+<body>
+     <input type="button"  value="1.10.2测试post提交" id="btn_1"/>
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script>
+ 
+        var page = {};
+
+        page.init = function () {
+            $('#btn_1').on('click', this.event.btn_1);
+        };
+
+        page.event = {};
+
+        page.event.btn_1 = function () {
+            $.post('/Home/ModelBindTest', { a: ['1', '2', '3'] }, function (data) {
+                console.log(data);
+            }, 'json');
+
+        }
+        $(function () {
+            page.init();
+
+        });
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

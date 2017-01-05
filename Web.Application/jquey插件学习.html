@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        //$.extend({
+        //    hello: function() {alert("wangze")}
+        //});
+
+        ;
+        (function($) {
+            $.fn.hello= function(opt) {
+                var opts = $.extend({},$.fn.hello.defaults ,opt || {});
+                return this.each(function() {
+                    var ele = $(this);
+                    //$.get(opts["url"], function (data) {
+                    //    ele.find("span").text(data["text"]||"wu");
+                    //},'json');
+                    var hel = new Hello(ele, opts);
+                    hel.getElem().trigger("click");
+                });            
+            }
+        })(jQuery);
+
+        function Hello(elem,opts) {
+            this.elem = elem;
+            this.opts = opts;
+            this.init();
+        }
+
+        var helloProto = Hello.prototype;
+        helloProto.getElem = function() {
+            return this.elem;
+        };
+        helloProto.getOpts = function() {
+            return this.opts;
+        };
+        helloProto.init = function() {
+            var that = this;
+            this.getElem().on("click", function() {
+                that._setTitle(that.getOpts()["title"]);
+                $.get(that.getOpts()["url"], function(data) {
+                    that.getElem().find("span").text(data.text || "11");
+                }, 'json');
+            });
+        };
+        helloProto._setTitle = function (text) {
+            this.getElem().find("span").text(text);
+        }
+
+        function Overlay() {            
+        };
+
+        var olProto = Overlay.prototype;
+        olProto.show= function() {
+            
+        };
+        $.fn.hello.defaults = {
+            url: 'json/data.json',
+            title:'title属性'
+        };
+    </script>
+    <script>
+        $(function() {
+            $("div").hello({ 'url': 'json/data.json','title':'我是title' });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <span></span>
+    </div>
+    <div id="loader" style="display:none">This is LODING</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_EasyUiLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div>
+    <input type="button" id="btn-register" value="注册session" />
+    <input type="button" id="btn-g" value="获取字符串" />
+</div>
+@section script{
+    <script src="~/Scripts/jquery.util.js"></script>
+    <script>
+        $(function () {
+            $('#btn-register').on('click', function () {
+                $.post('/Home/RegisterSession', function () {
+                    alert('注册成功');
+                });
+            });
+            $('#btn-g').on('click', function () {
+                var url = window.location.protocol + '//' + window.location.host + '/Home/SessionTest';
+                $.post('/Home/GetSession', { url: url }, function (data) {
+                    alert(data);
+                }, 'json')
+
+            });
+        });
+    </script>
+}
+
+
+

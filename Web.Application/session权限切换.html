@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>测试</title>
+
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div >
+            <label>当前登录用户</label>
+            <span id="user"></span>
+        </div>
+        <select>
+            <option>--请选择--</option>
+            <option value="王泽">王泽</option>
+            <option value="张福祥">张福祥</option>
+        </select>
+        <script>
+            $(function () {
+
+
+                pageInit();
+
+                /*
+                **下拉选择框change事件
+                */
+                $('select').bind('change', function () {
+                    var self = $(this);
+                    var data = {userName:self.val()};
+                    $.ajax({
+                        type: 'post',
+                        url: '/Ashx/SessionSwitch.ashx?action=switch',
+                        dataType: 'json',
+                        data:data,
+                        success: function() {
+                            window.location.reload();
+                        }
+                    });
+                });
+
+            });
+
+            function pageInit() {
+                $.ajax({
+                    type: 'get',
+                    url: '/Ashx/SessionSwitch.ashx?action=getUser',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data && data.isSuccess) {
+                            $('#user').text(data.data);
+                        }
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
+

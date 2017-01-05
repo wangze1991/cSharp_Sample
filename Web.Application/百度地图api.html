@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>百度地图api例子</title>
+    <link rel="stylesheet" type="text/css" href="http://api.map.baidu.com/res/12/bmap.css">
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+
+    <style type="text/css">
+        body, html, #baidu-map {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+    <script>
+
+    </script>
+    <script>
+        ; (function ($) {
+
+            var win = window.WMap = window.WMap || function (ele,opt) {
+                var map = new BaiDuMap(ele, opt);
+                map.init();
+                return map;
+            };
+
+            function BaiDuMap(elem, opt) {
+                this.ele = elem;
+                this.opts = $.extend(this.default(),opt);
+                this.map = new BMap.Map(this.ele);
+                this.gecoder = new BMap.Geocoder();
+            }
+
+            var baiduMapProto = BaiDuMap.prototype;
+
+
+            baiduMapProto.default =function() {
+                return {isShowInfo:true};
+            }
+
+            /*
+            **初始化
+            */
+            baiduMapProto.init = function () {
+                var self = this;
+                self.map.centerAndZoom(new BMap.Point(119.969506, 31.816914), 12);//设初始化地图
+                self.map.setCurrentCity("常州");
+                self.map.addControl(new BMap.NavigationControl());
+                self.map.enableScrollWheelZoom(true);
+            };
+         
+            /*
+            **解析地址
+            */
+            baiduMapProto.parseLocation = function (address) {
+                var self = this;
+                var city = arguments[1] || "常州";
+                if($.isArray(address)){
+                    for (var i = 0, max = address.length; i < max; i++) {
+                        self._parseLocation(address[i],city);
+                    }
+                } else {
+                    self._parseLocation(address,ctiy);
+                }   
+            }
+
+            baiduMapProto._parseLocation = function (address, city) {
+                var self = this;
+                if (typeof address === 'object') {
+                    self.gecoder.getPoint(address.address, function (point) {
+                        if (point) {
+                            var marker = new BMap.Marker(point);
+                            var label = new BMap.Label(address.name, { offset: new BMap.Size(20, -10) });
+                            marker.setLabel(label);
+                            self.map.addOverlay(marker);
+                            if (self.opts.isShowInfo) {
+                                self.addPromptBox({
+                                    marker: marker,
+                                    info: '地址:' + address.address + ' <br/>' + '电话:' + address.phone,
+                                    point: point,
+                                    title: address.name
+                                });
+                            }
+                            console.log(address.name + '解析成功');
+                        } else {
+                            console.log(address.name + '没有解析结果');
+                        }
+                    }, city)
+                } else {
+                    self.gecoder.getPoint(address, function (point) {
+                        if (point) {
+                            self.map.addOverlay(new BMap.Marker(point));
+                            console.log(address + '解析成功');
+                        } else {
+                            console.log(address + '没有解析结果');
+                        }
+                    }, city)
+                }
+
+            }
+
+            /*
+            **添加提示框
+            */
+            baiduMapProto.addPromptBox = function (options) {
+                var self = this;
+                var defaultOptions = {
+                    width: 200,//信息窗口宽度
+                    height: 100,// 信息窗口高度
+                    title: '',
+                    enableMessage: true,
+                    marker: null,
+                    info: '',
+                    point:null
+                };
+                var opts = $.extend(defaultOptions, options);
+                var infoWindow = new BMap.InfoWindow(opts.info, {
+                    width:opts.width,
+                    height: opts.height,
+                    title: opts.title,
+                    enableMessage: opts.enableMessage
+                });
+
+                opts.marker.addEventListener('click', function () {
+                    self.map.openInfoWindow(infoWindow,opts.point);
+                });
+            }
+
+            /*
+            **搜索
+            */
+            baiduMapProto.search = function (address) {
+                var self = this;
+                self.removerMarker();
+                var local = new BMap.LocalSearch(self.map, {
+                    renderOptions: { map: self.map }
+                });
+                local.search(address);
+            }
+
+            /*
+            **删除标签
+            */
+            baiduMapProto.removerMarker = function () {
+                var self=this;
+                var allOverlay = self.map.getOverlays();
+                for (var i = 0, max = allOverlay.length; i < max;i++){
+                    self.map.removeOverlay(allOverlay[i]);
+                }
+
+            }
+        })(jQuery);
+    </script>
+
+    <script>
+        $(function () {
+            var map = WMap('baidu-map');
+            //map.parseLocation('莱蒙都会中心广场');
+ //           { name: '锦绣家乐福店', address: '超市一楼入口处' },
+ //           { name: '五星欧尚店', address: '超市一楼扶梯出口处' },
+            var addressList = [
+                { name: '春秋旅游总部', address: '青山桥农工商斗巷商务中心6楼',phone:88888114 },
+                { name: '春秋国际旅游广场', address: '莱蒙都会中心广场',phone:88888112 },
+                { name: '旅游咨询中心', address: '化龙巷18-2号' ,phone:	88888117},
+                { name: '常州春秋长城国际旅行社', address: '新民里18号' ,phone:88880012},
+                { name: '湖塘广电中路营业部', address: '广电中路20号1-2号',phone:86500957 },  
+                { name: '南大街乐购店', address: '南大街乐购超市',phone: 86182816},
+                { name: '香江华廷店', address: '怀德中路香江华廷花园87号',phone: 	81290107},
+                { name: '武进分公司', address: '湖塘花园街茂业百货商住楼2507—2512号', phone: 68869232 }
+            ];
+    
+            map.parseLocation(addressList);
+            
+            $('#map-search').on('click', function () {
+                map.search($('#keyWord').val())
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <fieldset>
+        <input type="text" id="keyWord" />
+        <button id="map-search">提交</button>
+    </fieldset>
+
+    <div id="baidu-map" style="width:1000px;height:800px;margin:0 auto;margin-top:10px;"></div>
+    <!--<input type="button" value="提交" />-->
+</body>
+</html>
+<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>-->

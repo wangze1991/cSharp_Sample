@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="css/ui-dialog.css" rel="stylesheet" /> 
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/dialog-min.js"></script>
+    <script src="Scripts/jquery.form.min.js"></script>
+    <link href="css/ui-dialog.css" rel="stylesheet" />
+    <script>
+        $(function() {
+  
+            $("form").submit(function() {
+                $(this).ajaxSubmit({
+                    beforeSubmit: submitAlert,
+                    success: function (data) {
+                        var d = dialog.getCurrent();
+                        console.log(d);
+                        if (d) {
+                            d.remove();
+                        }
+                        console.log(data);
+                    }
+                });
+                return false;
+            });
+        });
+
+        function submitAlert() {
+            var d = dialog({ content: "This is Test" });
+            d.show();
+        }
+    </script>
+</head>
+<body>
+    <form method="POST" action="/Handler/BaseHandler.ashx">
+        姓名： <input type="text" name="user-name" id="age"/>
+        年龄：<input type="text" name="age" id="age"/>
+        <input type="submit" value="提交"/>
+    </form>
+</body>
+</html>

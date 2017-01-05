@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试登录页面</title>
+</head>
+<body>
+    <div style="width:1000px;margin:0 auto">  
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        用户名：<input type="text" name="LoginName" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        密码：<input type="text" name="Password" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" value="登录" id="loginBtn" />
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        </form>
+    </div>
+    <script src="~/static/js/lib/jquery-1.10.2.min.js"></script>
+    <script src="~/static/js/lib/modernizr-2.6.2.js"></script>
+    <script>
+        ; (function () {
+            $(function () {
+                //登录事件
+                $('#loginBtn').on('click', function () {
+                    var self = $(this);
+                    self.val('登录中，请稍等...').prop('disabled', true);
+                    $.post('/Account/Login', $('form').serialize(), function (result) {
+                        if (result.isSuccess) {
+                            window.location.href = result.extraData || '/Home/Index';
+                        } else {
+                            alert('登录失败，请重新登录');
+                            self.val('登录').prop('disabled', false);
+                        }
+
+                    });
+
+                });
+
+            });
+
+        })();
+
+        
+    </script>
+</body>
+</html>
+

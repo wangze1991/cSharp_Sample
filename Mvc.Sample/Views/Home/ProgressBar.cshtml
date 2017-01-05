@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "ProgressBar";
+}
+
+<h2>ProgressBar</h2>
+<h3></h3>
+@section script{
+
+        $(function () {
+            var pid=new Date().getTime();
+            $.post("/home/CallProgressAsync",{'pid':pid}, null);
+
+            getPercent(pid);
+        });
+
+        function getPercent(pid) {
+            $.post("/home/GetProgressState", {'pid':pid}, function (data) {
+                var percent = data || 0;
+                $('h3').text(percent);
+                if (percent != 100) {
+                    setTimeout(getPercent, 1000,pid);
+                }
+            }, 'json')
+        }
+
+
+    
+    }

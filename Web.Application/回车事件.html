@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>回车事件</title>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function() {
+            var $loginContainer = $("#loginContainer"),
+                $btnSubmit = $("#btnSubmit");
+            $loginContainer.show();
+            $loginContainer.keyup(function(e) {
+                if (e.keyCode === 13) {
+                    $btnSubmit.click();
+                }
+            });
+            $btnSubmit.click(function() {
+                alert($("#txtName").val());
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <div id="loginContainer" style="width:250px;height:200px;background-color: blue;display:none">
+        <input type="text" id="txtName" />
+        <input type="text" id="txtPwd"/>
+        <input type="button" id="btnSubmit" value="提交"/>
+    </div>
+</body>
+</html>

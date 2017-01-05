@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        .progressbar{
+            width:120px;
+            height:20px;
+            border-radius:3px;
+            border:1px solid #ccc;
+        }
+        .progressbar>div{
+              border-radius:3px;
+              height:20px;
+              width:0px;
+              background-color:dodgerblue;
+              text-align:center;
+        }
+    </style>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div class="progressbar">
+        <div>78%</div>
+    </div>
+   <script>
+       $(function () {
+           var width=$('.progressbar').width()*0.78;
+           $('div', '.progressbar').animate({ width: width + 'px', });
+       });
+   </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>百度地图api例子</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=1.4"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.4/src/CityList_min.js"></script>
+</head>
+<body>
+    <body>
+        <div id="container">
+        </div>
+        <div id="map_container" >
+        </div>
+
+
+        <script type="text/javascript">
+            // 新创建地图
+            var map = new BMap.Map("map_container");
+            map.centerAndZoom(new BMap.Point(121.478125, 31.229649), 12);
+
+            var cityList = new BMapLib.CityList({
+                container: 'container',
+            });
+
+            //cityList.getBusiness('中关村', function (json) {
+            //    console.log('商圈');
+            //    console.log(json);
+            //});
+
+            //cityList.getSubAreaList(131, function (json) {
+            //    console.log('城市列表');
+            //    console.log(json);
+            //});
+
+            //cityList.addEventListener('cityclick', function (e) {
+            //    console.log(e);
+            //});
+            cityList.getSubAreaList(348, function(json) {
+                alert(JSON.stringify(json));
+            });
+        
+        </script>
+
+    </body>
+</body>
+</html>

@@ -1,0 +1,552 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+
+        首页 -  Dotamax - 做国内第一游戏数据门户
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp-platform" />
+    <meta name="apple-itunes-app" content="app-id=990892583">
+    <meta name="keywords" content="dotamax, 游戏, dota, dota2, dota2直播, 游戏数据查询, 饰品交易">
+    <meta name="description" content="Dotamax官网, 个人游戏记录,英雄出装,物品介绍, 饰品交易, 在线直播, 比赛记录">
+    <link href="//cdn.maxjia.com/css/dotamax_v20150701.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.maxjia.com/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="//cdn.maxjia.com/js/sorttable.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdn.maxjia.com/js/highcharts.js"></script>
+    <script src="//cdn.maxjia.com/js/highcharts-more.js"></script>
+    <script type="text/javascript" src="//cdn.maxjia.com/js/bootstrap_plus_select.min.js"></script>
+    <script type="text/javascript" src="//cdn.maxjia.com/js/dotamax_v1205.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] ||
+            function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-47132172-1', 'dotamax.com');
+        ga('send', 'pageview');
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?575895fe09d48554a608faa5ef059555";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        function closeApp() {
+            $("#android_app").hide();
+            setCookie('androidHide', 'True');
+        }
+    </script><div id="android_app" style=";width: 100%;min-width: 1100px;height: 16em;background-color: rgb(242,242,242);border-top: 2px solid rgb(205,205,205);z-index: 100000;display:none;">
+        <div style="font-size: 3em;color: #999;line-height:5.5em">
+            <i onclick="closeApp();" class="fa fa-times" style="cursor: pointer;font-size: 1.6em;margin-left: 3%;float: left;line-height:3.1em"></i><a href="http://cdn.maxjia.com/app/Maxjia_release.apk">
+                <img src="http://cdn.maxjia.com/max_app/icon.png" style="height: 4.5em;margin-top: 0.4em;border-radius: 0.8em;margin-left: 1em;float: left;" /><div style="float: left;margin-left: 0.7em;line-height:1.5em;color: #111;"><div style="margin-top: 1em;">Max+</div><div style="margin-top: 0.1em;">Dotamax App上线啦</div></div><div style="float: right;margin-right: 1.7em;line-height:5.2em;color: rgb(23,126,251);">
+                    现在下载
+                </div>
+            </a>
+        </div>
+    </div><div style="position: absolute;top:0px;width:100%;height: 35px;line-height: 35px;background-color: rgba(62,42,29,0.6);text-align: center;color:#b8a378">
+        [Dotamax全程助力TI5] Max+ 2.0版本上线！Ti5竞猜送iWatch、Razer键鼠套、Dota2至宝，快来下载吧！ <a href="/app/">[点我下载]</a>
+    </div><div class="maxtopbar" style="position: absolute;top:35px;">
+        <div class="nav-head" style="width: 100%;">
+            <div style="width: 1100px;margin-left: auto;margin-right: auto;height: 46px;text-align: left;">
+                <a href="/"><img src="/static/image/max_logo3.png" style="width:140px;margin-right: 10px;margin-left:10px;margin-top:10px;float: left;"></a><a href="/home/"><li class="h-active">首页</li></a><a href="/hero/rate/"><li>英雄</li></a><a href="/item/"><li>物品</li></a><a href="/match/tour_famous_team_list/">
+                    <li>
+                        职业数据
+
+                    </li>
+                </a><a href="/player/"><li>玩家</li></a><a href="/ladder/"><li>天梯</li></a><a href="/live/" target="_blank"><li>直播</li></a><a href="/video/users/" target="_blank">
+                    <li style="position: relative;">
+                        视频
+                    </li>
+                </a><a href="/exchange/home/"><li>饰品</li></a><a href="/app" id="appdownload">
+                    <li style="background-color: #cd0c0c;
+							background-image: -webkit-gradient(linear,left top,left bottom,from(#0c0ccd),to(#a20000));
+							background-image: -webkit-linear-gradient(top,#cd0c0c,#a20000);
+							background-image: -moz-linear-gradient(top,#cd0c0c,#a20000);
+							background-image: -o-linear-gradient(top,#cd0c0c,#a20000);
+							background-image: -ms-linear-gradient(top,#cd0c0c,#a20000);
+							background-image: linear-gradient(top,#cd0c0c,#a20000);color: #fff">
+                        APP
+                    </li>
+                </a>
+                <script type="text/javascript">
+                    var href = '';
+                    if ((navigator.userAgent.match(/(pod|iPhone|iPod|ios|iPad)/i))) {
+                        href = "https://itunes.apple.com/us/app/max+-dotamax-guan-fangapp/id990892583?l=zh&ls=1&mt=8";
+                        document.getElementById("appdownload").setAttribute("href", href);
+
+                    } else if ((navigator.userAgent.match(/(Android|android)/i))) {
+                        href = "http://cdn.maxjia.com/app/Maxjia_release.apk";
+                        document.getElementById("appdownload").setAttribute("href", href);
+
+                    } else {
+
+                    }
+                </script><div style="float:right;margin-right:20px;"><a href="/login/"><li>我的数据</li><li><span class="glyphicon glyphicon-log-in" style="margin-right: 5px;font-size: 14px;line-height:12px;"></span> 登陆/注册 </li></a></div>
+            </div>
+        </div><div class="maxtopmainbar">
+            <div style="width:100%;height:160px;background: url('/static/image/back_new_2.jpg') repeat-x;background-position: center;"></div><div style="position: absolute;top:19px;width:100%;display: table;height: 130px;">
+                <div style="margin-left: auto;margin-right: auto;position: relative;text-align: center;width:1080px;padding-left:20px;">
+                    <div style="position: absolute;right:0px;top:17px;font-size: 12px;color:#999;z-index: 100;background-color: rgb(33,33,33);background-color: rgba(33,33,33,0.7);padding: 7px 7px 2px 7px;border-radius: 4px;"><div style="float:left"><img src="http://cdn.maxjia.com/app/qr_in_one.png" width="80px;" /></div><div style="float:left;margin-left: 8px;"><div style="float:left;color:#ccc">Dotamax移动端</div><br><div style="background-color: #ccc;min-width: 85px;height: 25px;border-radius: 2px;position: relative;margin-top: 3px;"><a target="_blank" href="https://itunes.apple.com/us/app/max+-dotamax-guan-fangapp/id990892583?l=zh&amp;ls=1&amp;mt=8"><i class="fa fa-apple" style="font-size: 18px;position: absolute;top:4px;left:5px;color:#444"></i><div style="line-height: 27px;float:left;margin-left: 25px;color:#444">iOS下载</div></a></div><div style="background-color: #ccc;min-width: 85px;height: 25px;border-radius: 2px;position: relative;margin-top: 5px;"><a target="_blank" href="http://cdn.maxjia.com/app/Maxjia_release.apk"><i class="fa fa-android" style="font-size: 18px;position: absolute;top:3px;left:5px;color:#444"></i><div style="line-height: 27px;float:left;margin-left: 25px;color:#444">安卓下载</div></a></div></div></div><div style="line-height: 30px;font-size: 18px;position: absolute;right:25px;top:110px;cursor: pointer;" onclick="DoNav('/player/number/')"><div style="font-size: 12px;float: left;margin-left:60px;margin-right:5px;">Dota2全球在线: </div><div style="float: left;"> 462709</div></div><div style="position: absolute;top:40px;left:20px;text-align: left;font-size: 28px;color:#fff;font-weight: 500;width:450px;">
+
+                        首页
+
+                    </div>
+                </div>
+            </div><div id="search-box"><form action="/search/" method="get"><div class="large-search"><div style="margin-left: auto;margin-right:auto;position: relative;width: 341px;"><input class="large-search-text" type="text" name="q" placeholder="输入国服昵称或数字ID"><input type="submit" value="Go" class="large-search-btn "></div></div></form></div>
+        </div><div class="main-shadow-box">
+            <div class="main-container" style="margin-top:0px;margin-bottom:1px;padding-bottom:1px;">
+                <!-- Where content to be added -->
+                <script type="text/javascript">
+                    function displayMoreNews() {
+                        $(".news-hide").show();
+                        $(".home-box-more").text("已显示全部");
+                    }
+                </script><div class="secoundbar-outer">
+                    <ul class="secoundbar" style="margin-top: 20px;margin-bottom: 0px">
+                        <a href="/home/">
+                            <li class="active-s">
+                                首页
+                            </li>
+                        </a>
+                        <a href="/accounts/dashboard/0/">
+                            <li>
+                                我的关注
+                            </li>
+                        </a>
+                    </ul>
+                </div><div class="container xuning-box" style="width:1098px !important;">
+                    <div style="width:320px;min-height: 1050px;float: right;margin-right: 8px;">
+                        <div style="width:320px;margin-top: 40px;">
+                            <div class="title-hori">职业比赛</div><table class="table-list-small" style="width: 95%; margin-left: auto;margin-right: auto;margin-bottom: 10px;margin-top: 10px;text-align: left !important;">
+                                <thead>
+                                <td style="width:70%;">对战战队</td>
+                                <td style="width:30%;">开始时间</td></thead>
+                                <tr>
+                                    <td style="width:210px;font-size: 11px;height: 33px !important;">
+                                        <div style="display: table;line-height: 20px;float: left;margin-bottom: 10px;">
+                                            <div style="width:210px;float: left;position: relative;">
+                                                <span style="position: absolute;left:5px;top:-4px;">
+                                                    <a href="/match/tour_team_detail/?team_id=46">
+                                                        <img style="height: 10px;margin: 0px 0;vertical-align:middle;" src="http://cdn.steamcommunity.com/public/images/countryflags/ru.gif" />
+
+                                                        Empire
+
+
+                                                    </a>
+                                                </span><span style="font-size:14px;color:#fff;font-weight:500;position: absolute;left:100px;top:-4px;">vs</span><span style="position: absolute;left:130px;top:-4px;">
+                                                    <a href="/match/tour_team_detail/?team_id=1520578">
+                                                        <img style="height: 10px;margin: 0px 0;vertical-align:middle;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" />
+
+
+                                                        CDEC
+
+
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-size: 10px;text-align: center;height: 33px !important;"><a href="/league/games_detail/?lobby_id=24126717138554631">数据直播</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:210px;font-size: 11px;height: 33px !important;">
+                                        <div style="display: table;line-height: 20px;float: left;margin-bottom: 10px;">
+                                            <div style="width:210px;float: left;position: relative;">
+                                                <span style="position: absolute;left:5px;top:-4px;">
+                                                    <a href="/match/tour_team_detail/?team_id=39">
+                                                        <img style="height: 10px;margin: 0px 0;vertical-align:middle;" src="http://cdn.steamcommunity.com/public/images/countryflags/us.gif" />
+
+                                                        EG
+
+
+                                                    </a>
+                                                </span><span style="font-size:14px;color:#fff;font-weight:500;position: absolute;left:100px;top:-4px;">vs</span><span style="position: absolute;left:130px;top:-4px;">
+                                                    <a href="/match/tour_team_detail/?team_id=2201839">
+                                                        <img style="height: 10px;margin: 0px 0;vertical-align:middle;" src="http://cdn.steamcommunity.com/public/images/countryflags/kr.gif" />
+
+
+                                                        MVP.Hot6
+
+
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-size: 10px;text-align: center;height: 33px !important;"><a href="/league/games_detail/?lobby_id=24126717150919332">数据直播</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:210px;font-size: 11px;height: 33px !important;">
+                                        <div style="display: table;line-height: 20px;float: left;margin-bottom: 10px;">
+                                            <div style="width:210px;float: left;position: relative;">
+                                                <span style="position: absolute;left:5px;top:-4px;">
+                                                    <a href="/match/tour_team_detail/?team_id=4">
+                                                        <img style="height: 10px;margin: 0px 0;vertical-align:middle;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" />
+
+                                                        EHOME
+
+
+                                                    </a>
+                                                </span><span style="font-size:14px;color:#fff;font-weight:500;position: absolute;left:100px;top:-4px;">vs</span><span style="position: absolute;left:130px;top:-4px;">
+                                                    <a href="/match/tour_team_detail/?team_id=726228">
+                                                        <img style="height: 10px;margin: 0px 0;vertical-align:middle;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" />
+
+
+                                                        VG
+
+
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-size: 10px;text-align: center;height: 33px !important;"><a href="/league/games_detail/?lobby_id=24126717109855648">数据直播</a></td>
+                                </tr>
+                            </table><div class="title-hori">战队排名<span style="float:right;margin-right:8px;"><a href="/match/tour_famous_team_list/" class="more-circle">More</a></span></div><table class="table-list-small" style="width: 96%; margin-left: auto;margin-right: auto;margin-bottom: 20px;margin-top: 10px;">
+                                <thead>
+                                <td style="width:20%;">排名</td>
+                                <td style="width:60%;text-align: left;"><div style="margin-left: 25px;">战队</div></td>
+                                <td style="width:20%;">MMR</td></thead>
+                                <tr style="cursor: pointer;" id="matchrow_1" onclick="DoNav('/match/tour_team_detail/?team_id=1838315')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        1
+
+                                        <li class="glyphicon glyphicon-minus"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=1838315"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/eu.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> Secret </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1541</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_2" onclick="DoNav('/match/tour_team_detail/?team_id=15')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        2
+
+
+                                        <li class="glyphicon glyphicon-arrow-up"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=15"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> LGD </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1398</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_3" onclick="DoNav('/match/tour_team_detail/?team_id=39')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        3
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=39"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/us.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> EG </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1394</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_4" onclick="DoNav('/match/tour_team_detail/?team_id=1333179')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        4
+
+
+                                        <li class="glyphicon glyphicon-arrow-up"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=1333179"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/eu.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> C9 G2A </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1315</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_5" onclick="DoNav('/match/tour_team_detail/?team_id=726228')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        5
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=726228"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> VG </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1306</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_6" onclick="DoNav('/match/tour_team_detail/?team_id=46')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        6
+
+
+                                        <li class="glyphicon glyphicon-arrow-up"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=46"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/ru.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> Empire </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1297</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_7" onclick="DoNav('/match/tour_team_detail/?team_id=5')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        7
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=5"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> iG </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1287</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_8" onclick="DoNav('/match/tour_team_detail/?team_id=1883502')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        8
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=1883502"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/ru.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> VP </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1278</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_9" onclick="DoNav('/match/tour_team_detail/?team_id=1520578')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        9
+
+                                        <li class="glyphicon glyphicon-minus"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=1520578"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> CDEC </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1231</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_10" onclick="DoNav('/match/tour_team_detail/?team_id=1375614')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        10
+
+
+                                        <li class="glyphicon glyphicon-arrow-up"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=1375614"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> Newbee </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1197</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_11" onclick="DoNav('/match/tour_team_detail/?team_id=4')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        11
+
+
+                                        <li class="glyphicon glyphicon-arrow-up"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=4"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/cn.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> EHOME </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1195</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_12" onclick="DoNav('/match/tour_team_detail/?team_id=36')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        12
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=36"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/ua.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> Na`Vi </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1178</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_13" onclick="DoNav('/match/tour_team_detail/?team_id=2006913')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        13
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=2006913"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/ru.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> Vega </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1173</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_14" onclick="DoNav('/match/tour_team_detail/?team_id=2085365')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        14
+
+                                        </font><li class="glyphicon glyphicon-arrow-down" style="color:#777;"></li><font style="color:#777"></font>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=2085365"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/se.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> NiP </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1166</td>
+                                </tr>
+                                <tr style="cursor: pointer;" id="matchrow_15" onclick="DoNav('/match/tour_team_detail/?team_id=3')">
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">
+                                        15
+
+
+                                        <li class="glyphicon glyphicon-arrow-up"></li>
+                                    </td>
+                                    <td style="text-align: left;vertical-align: middle;height: 33px !important;"><a href="/match/tour_team_detail/?team_id=3"><img style="height:10px;width:16px;" src="http://cdn.steamcommunity.com/public/images/countryflags/us.gif" onerror="this.src='/static/image/default_team.jpg'"></img><span> coL </span></a></td>
+                                    <td style="text-align: center;vertical-align: middle;height: 33px !important;">1162</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div><div style="float: left;width:752px;margin-left: 8px;margin-bottom: 8px;">
+                        <div style="margin-top: 38px;"><div class="title-hori tit-box">Ti5 专题<span style="float:right;margin-right:10px;"></div><div style="display: table;"><a href="/ti5/home/"><img src="//cdn.maxjia.com/image/ti5_bar.jpg" style="width:100%;margin-top: 10px;cursor: pointer;"></a></div></div><div class="home-box" style="margin-bottom: 15px;margin-top:20px;">
+                            <div class="title-hori tit-box">直播<span style="float:right;margin-right:10px;"><a href="/live/" class="more-circle">More</a></span></div><div class="new-box content-dark" style="display: table;">
+                                <div class="live-box" style="width:240px;margin:10px 10px 10px 0px;">
+                                    <a href="/live_detail/?live_type=huomaotv&live_id=3871&lobby_id=" target="_blank">
+                                        <div style="padding:0px;margin:0px;font-size:0px;line-height: 0px;position: relative;"><img style="width:242px;height: 130px;" class="none-opacity-img" src="http://livepic.huomaotv.com/3871/i_10.jpg?1438137084" /><div class="play-shadow" style="position: absolute;top:40px;left:95px;;z-index: -100;"><img src="/static/image/play.png"></div></div><div style="width:100%;display: table;position: relative;border:1px #111 solid;background-color: rgb(15,15,15);">
+                                            <div style="position: absolute;top:-25px;left:7px;"><img class="circle-live" src="http://www.huomaotv.com/uc_server/avatar.php?uid=373481&amp;size=small" onerror="$(this).remove();" /></div><div style="font-size:14px;font-weight:400;line-height:30px;float:left;margin-left:70px;color:#eee;display: table;">
+                                                <div class="overflow-text" style="width:160px;">
+                                                    国际邀请赛官方直播1
+                                                </div>
+                                            </div><div style="color:#999;text-align: left;font-size: 11px;display: table;width:100%;padding:0 5px 5px 5px;;">
+                                                <div class="overflow-text" style="width:100px;float:left;color:#ddd">国际邀请赛直播1</div><div style="float: right;margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-eye-open"></span> 136647
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    huomaotv
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div><div class="live-box" style="width:240px;margin:10px 10px 10px 0px;">
+                                    <a href="/live_detail/?live_type=huomaotv&live_id=99&lobby_id=" target="_blank">
+                                        <div style="padding:0px;margin:0px;font-size:0px;line-height: 0px;position: relative;"><img style="width:242px;height: 130px;" class="none-opacity-img" src="http://livepic.huomaotv.com/99/i_10.jpg?1438137084" /><div class="play-shadow" style="position: absolute;top:40px;left:95px;;z-index: -100;"><img src="/static/image/play.png"></div></div><div style="width:100%;display: table;position: relative;border:1px #111 solid;background-color: rgb(15,15,15);">
+                                            <div style="position: absolute;top:-25px;left:7px;"><img class="circle-live" src="http://www.huomaotv.com/uc_server/avatar.php?uid=18&amp;size=small" onerror="$(this).remove();" /></div><div style="font-size:14px;font-weight:400;line-height:30px;float:left;margin-left:70px;color:#eee;display: table;">
+                                                <div class="overflow-text" style="width:160px;">
+                                                    2015 DOTA2 国际邀请赛 小组赛
+                                                </div>
+                                            </div><div style="color:#999;text-align: left;font-size: 11px;display: table;width:100%;padding:0 5px 5px 5px;;">
+                                                <div class="overflow-text" style="width:100px;float:left;color:#ddd">MarsTV官方</div><div style="float: right;margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-eye-open"></span> 70253
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    huomaotv
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div><div class="live-box" style="width:240px;margin:10px 10px 10px 0px;">
+                                    <a href="/live_detail/?live_type=huomaotv&live_id=845&lobby_id=" target="_blank">
+                                        <div style="padding:0px;margin:0px;font-size:0px;line-height: 0px;position: relative;"><img style="width:242px;height: 130px;" class="none-opacity-img" src="http://livepic.huomaotv.com/845/i_10.jpg?1438137084" /><div class="play-shadow" style="position: absolute;top:40px;left:95px;;z-index: -100;"><img src="/static/image/play.png"></div></div><div style="width:100%;display: table;position: relative;border:1px #111 solid;background-color: rgb(15,15,15);">
+                                            <div style="position: absolute;top:-25px;left:7px;"><img class="circle-live" src="http://www.huomaotv.com/uc_server/avatar.php?uid=77522&amp;size=small" onerror="$(this).remove();" /></div><div style="font-size:14px;font-weight:400;line-height:30px;float:left;margin-left:70px;color:#eee;display: table;">
+                                                <div class="overflow-text" style="width:160px;">
+                                                    『砖』EG-MVP.H6【´･_･`】
+                                                </div>
+                                            </div><div style="color:#999;text-align: left;font-size: 11px;display: table;width:100%;padding:0 5px 5px 5px;;">
+                                                <div class="overflow-text" style="width:100px;float:left;color:#ddd">易星夜</div><div style="float: right;margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-eye-open"></span> 36268
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    huomaotv
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div><div class="live-box" style="width:240px;margin:10px 10px 10px 0px;">
+                                    <a href="/live_detail/?live_type=yy&live_id=2337243982" target="_blank">
+                                        <div style="padding:0px;margin:0px;font-size:0px;line-height: 0px;position: relative;"><img style="width:242px;height: 130px;" class="none-opacity-img" src="http://image.yy.com/yysnapshot/2899a1213933a631f38d2da0c63c6a775b682c4e" /><div class="play-shadow" style="position: absolute;top:40px;left:95px;;z-index: -100;"><img src="/static/image/play.png"></div></div><div style="width:100%;display: table;position: relative;border:1px #111 solid;background-color: rgb(15,15,15);">
+                                            <div style="position: absolute;top:-25px;left:7px;"><img class="circle-live" src="http://img.huya.com/avatar/1045/c2/e96c540cd002743c524e5d54c48462_180_135.jpg?1383917551" onerror="$(this).remove();" /></div><div style="font-size:14px;font-weight:400;line-height:30px;float:left;margin-left:70px;color:#eee;display: table;">
+                                                <div class="overflow-text" style="width:160px;">
+                                                    │　　【 Longdd 】讲道理嘛           │
+                                                </div>
+                                            </div><div style="color:#999;text-align: left;font-size: 11px;display: table;width:100%;padding:0 5px 5px 5px;;">
+                                                <div class="overflow-text" style="width:100px;float:left;color:#ddd">龙弟弟</div><div style="float: right;margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-eye-open"></span> 38582
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    虎牙
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div><div class="live-box" style="width:240px;margin:10px 10px 10px 0px;">
+                                    <a href="/live_detail/?live_type=zhanqi&live_id=737" target="_blank">
+                                        <div style="padding:0px;margin:0px;font-size:0px;line-height: 0px;position: relative;"><img style="width:242px;height: 130px;" class="none-opacity-img" src="http://dlpic.cdn.zhanqi.tv/live/20150729/737_CGq78_2015-07-29-10-30-33.jpg" /><div class="play-shadow" style="position: absolute;top:40px;left:95px;;z-index: -100;"><img src="/static/image/play.png"></div></div><div style="width:100%;display: table;position: relative;border:1px #111 solid;background-color: rgb(15,15,15);">
+                                            <div style="position: absolute;top:-25px;left:7px;"><img class="circle-live" src="http://pic.cdn.zhanqi.tv/avatar/6e/a9a/566711_1407847801.jpg-big" onerror="$(this).remove();" /></div><div style="font-size:14px;font-weight:400;line-height:30px;float:left;margin-left:70px;color:#eee;display: table;">
+                                                <div class="overflow-text" style="width:160px;">
+                                                    奶鸽鸽：我把你当兄弟，你居然想杀我
+                                                </div>
+                                            </div><div style="color:#999;text-align: left;font-size: 11px;display: table;width:100%;padding:0 5px 5px 5px;;">
+                                                <div class="overflow-text" style="width:100px;float:left;color:#ddd">DD  </div><div style="float: right;margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-eye-open"></span> 384037
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    ZhanQi
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div><div class="live-box" style="width:240px;margin:10px 10px 10px 0px;">
+                                    <a href="/live_detail/?live_type=douyu&live_id=56232" target="_blank">
+                                        <div style="padding:0px;margin:0px;font-size:0px;line-height: 0px;position: relative;"><img style="width:242px;height: 130px;" class="none-opacity-img" src="http://staticlive.douyutv.com/upload/web_pic/2/56232_1507291026_thumb.jpg" /><div class="play-shadow" style="position: absolute;top:40px;left:95px;;z-index: -100;"><img src="/static/image/play.png"></div></div><div style="width:100%;display: table;position: relative;border:1px #111 solid;background-color: rgb(15,15,15);">
+                                            <div style="position: absolute;top:-25px;left:7px;"><img class="circle-live" src="http://uc.douyutv.com/avatar.php?uid=1295862&amp;size=middle" onerror="$(this).remove();" /></div><div style="font-size:14px;font-weight:400;line-height:30px;float:left;margin-left:70px;color:#eee;display: table;">
+                                                <div class="overflow-text" style="width:160px;">
+                                                    TI5小组赛副舞台 CDEC VS Empire
+                                                </div>
+                                            </div><div style="color:#999;text-align: left;font-size: 11px;display: table;width:100%;padding:0 5px 5px 5px;;">
+                                                <div class="overflow-text" style="width:100px;float:left;color:#ddd">2015国际邀请赛2</div><div style="float: right;margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-eye-open"></span> 294541
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    douyu
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><div class="home-box" style="margin-bottom: 15px;">
+                            <div class="title-hori tit-box">比赛数据直播</div><div class="new-box content-dark" style="padding: 10px 10px 0 10px;display: table;width:748px;">
+                                <div class="live-list-box" style="width:96%" onclick="DoNav('/league/games_detail/?lobby_id=24126717138554631');">
+                                    <div style="width:96%;text-align: center;margin-left:auto;margin-right:auto;position: relative;margin-top:8px;margin-bottom:0px;">
+                                        <span class="table-title-font">2015年国际邀请赛</span><span style="position: absolute;right:20px;">
+                                            <span class="glyphicon glyphicon-eye-open" title="观看者"></span> 82142  <span class="glyphicon glyphicon-play" style="margin-left:20px;" title="游戏时间"></span> 30分钟
+                                        </span>
+                                    </div><table style="width:96%;margin-bottom:10px;margin-left:auto;margin-right:auto;">
+                                        <tr>
+                                            <td style="color: #92A525;line-height: 25px;font-size:13px;width:45%;text-align: center;" class="table-title-font">
+
+                                                Empire
+
+
+                                            </td>
+                                            <td style="width:10%;text-align: center;"></td>
+                                            <td style="color: #9c3627;line-height: 25px;font-size:13px;width:45%;text-align: center;" class="table-title-font">
+
+
+                                                CDEC
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:45%;text-align: center;"><a href="/hero/detail/dazzle"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/dazzle_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/bloodseeker"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/bloodseeker_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/dark_seer"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/dark_seer_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/invoker"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/invoker_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/winter_wyvern"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/winter_wyvern_hphover.png" style="margin-right: 2px;"></img></a><span style="float:right;font-size:16px;font-weight: 700;color:#fff">12</span></td>
+                                            <td style="width:10%;text-align: center;font-size:12px;font-weight: 700;">
+                                                V.S.
+                                            </td>
+                                            <td style="width:45%;text-align: center;"><span style="float:left;font-size:16px;font-weight: 700;color:#fff">26</span><a href="/hero/detail/tusk"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/tusk_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/ember_spirit"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/ember_spirit_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/templar_assassin"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/templar_assassin_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/undying"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/undying_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/lina"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/lina_hphover.png" style="margin-right: 2px;"></img></a></td>
+                                        </tr>
+                                    </table>
+                                </div><div class="live-list-box" style="width:96%" onclick="DoNav('/league/games_detail/?lobby_id=24126717150919332');">
+                                    <div style="width:96%;text-align: center;margin-left:auto;margin-right:auto;position: relative;margin-top:8px;margin-bottom:0px;">
+                                        <span class="table-title-font">2015年国际邀请赛</span><span style="position: absolute;right:20px;">
+                                            <span class="glyphicon glyphicon-eye-open" title="观看者"></span> 15903  <span class="glyphicon glyphicon-play" style="margin-left:20px;" title="游戏时间"></span> 5分钟
+                                        </span>
+                                    </div><table style="width:96%;margin-bottom:10px;margin-left:auto;margin-right:auto;">
+                                        <tr>
+                                            <td style="color: #92A525;line-height: 25px;font-size:13px;width:45%;text-align: center;" class="table-title-font">
+
+                                                EG
+
+
+                                            </td>
+                                            <td style="width:10%;text-align: center;"></td>
+                                            <td style="color: #9c3627;line-height: 25px;font-size:13px;width:45%;text-align: center;" class="table-title-font">
+
+
+                                                MVP.Hot6
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:45%;text-align: center;"><a href="/hero/detail/windrunner"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/windrunner_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/dark_seer"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/dark_seer_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/treant"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/treant_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/naga_siren"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/naga_siren_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/gyrocopter"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/gyrocopter_hphover.png" style="margin-right: 2px;"></img></a><span style="float:right;font-size:16px;font-weight: 700;color:#fff">1</span></td>
+                                            <td style="width:10%;text-align: center;font-size:12px;font-weight: 700;">
+                                                V.S.
+                                            </td>
+                                            <td style="width:45%;text-align: center;"><span style="float:left;font-size:16px;font-weight: 700;color:#fff">1</span><a href="/hero/detail/tinker"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/tinker_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/leshrac"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/leshrac_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/witch_doctor"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/witch_doctor_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/bounty_hunter"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/bounty_hunter_hphover.png" style="margin-right: 2px;"></img></a><a href="/hero/detail/undying"><img class="match-hero-img-list" src="http://www.dota2.com.cn/images/heroes/undying_hphover.png" style="margin-right: 2px;"></img></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><div class="title-hori">职业联赛<span style="float:right;margin-right:8px;"><a href="/match/tour/" class="more-circle">More</a></span></div><div class="live-box" style="margin:4px;width:110px;float: left;"><a href="/match/tour_league_overview/?league_id=2733" target="_blank"><div style="width:100px;height: 73px;"><img style="width:110px;" src="http://210.dotamax.com/static/econ/tools/international_2015_ticket.png" onerror="this.src='http://210.dotamax.com/static/econ/default_item.png'" /></div></a></div><div class="live-box" style="margin:4px;width:110px;float: left;"><a href="/match/tour_league_overview/?league_id=2980" target="_blank"><div style="width:100px;height: 73px;"><img style="width:110px;" src="http://210.dotamax.com/static/econ/leagues/subscriptions_mlg_pro_league_season_2.png" onerror="this.src='http://210.dotamax.com/static/econ/default_item.png'" /></div></a></div><div class="live-box" style="margin:4px;width:110px;float: left;"><a href="/match/tour_league_overview/?league_id=2661" target="_blank"><div style="width:100px;height: 73px;"><img style="width:110px;" src="http://210.dotamax.com/static/econ/leagues/subscriptions_the_summit_3_.png" onerror="this.src='http://210.dotamax.com/static/econ/default_item.png'" /></div></a></div><div class="live-box" style="margin:4px;width:110px;float: left;margin-bottom: 20px;"><a href="/match/tour_league_overview/?league_id=1706" target="_blank"><div style="width:110px;height: 73px;"><img style="width:110px;" src="http://cdn.dota2.com.cn/apps/570/icons/econ/leagues/subscriptions_pgcticket.67a45523aa04831100fa3bdece538337ae3b769c.png" /></div></a></div><div class="live-box" style="margin:4px;width:110px;float: left;margin-bottom: 20px;"><a href="/match/tour_league_overview/?league_id=1475" target="_blank"><div style="width:110px;height: 73px;"><img style="width:110px;" src="http://cdn.dota2.com.cn/apps/570/icons/econ/leagues/subscriptions_gemplay.f2cfeb1784bd94cf15711f61dc81e4c88a7d92b7.png" /></div></a></div><div class="live-box" style="margin:4px;width:110px;float: left;margin-bottom: 20px;"><a href="/match/tour_league_overview/?league_id=2172" target="_blank"><div style="width:110px;height: 73px;"><img style="width:110px;" src="http://cdn.dota2.com.cn/apps/570/icons/econ/leagues/subscriptions_esportal.7f11a4e584ed0713add92f3712bff835823c1a2d.png" /></div></a></div>
+                    </div>
+                </div>
+            </div><!-- footbar --><div style="width:100%;min-width:1100px;text-align: center; display: table;position: absolute;">
+                <div style="background-color: rgb(10,10,10);border-top:1px rgb(15,15,15) solid;cursor: pointer;margin-top: -1px;height:23px;" title="回到顶部" onclick="GoToTop(this)"><span class="fa fa-chevron-up" style="font-size: 16px;line-height: 25px;"></span></div><div style="background-color: rgb(0,0,0);padding-top: 15px;padding-bottom: 15px;position: relative;"><div style="width:1100px;margin: 0 auto;line-height: 20px;position: relative;height: 30px;"><span style="line-height: 30px;position: absolute;right:25px;top:0px;"><img src="/static/image/zh-cn.gif" style="margin-right: 3px;height: 15px;"></img><a href="/set_language/?language=en"><img src="/static/image/en.gif" style="margin-right: 3px;"></img></a><a href="/set_language/?language=ru"><img src="/static/image/ru.gif" style="margin-right: 3px;"></img></a><a href="/set_language/?language=ko"><img src="/static/image/ko.gif" style="margin-right: 3px;"></img></a></span><div style="position: absolute;left:23%;height: 40px;"><a href="#" target="_blank"><img src="/static/image/max_logo3.png" title="Dota2" style="width:105px;margin-right: 15px;margin-left:10px;cursor: pointer;"></a></div><div style="position: absolute;left:37%"><a href="http://lolmax.com"><img src="http://lolmax.com/static/image/lolmax.png" title="英雄联盟" style="width:97px;margin-right: 10px;margin-left:10px;margin-top:2px;cursor: pointer;"></a></div><div style="position: absolute;left:50%"><a href="http://d3.maxjia.com"><img src="http://d3.maxjia.com/static/image/d3_small.png" title="暗黑3" style="width:115px;margin-right: 10px;margin-left:10px;margin-top:2px;cursor: pointer;"></a></div><div style="position: absolute;left:64%"><a href="http://hosmax.com"><img src="http://hosmax.com/static/image/hosmax.png" title="风暴英雄" style="width:97px;margin-right: 10px;margin-left:10px;margin-top:2px;cursor: pointer;"></a></div></div></div><div class="footbar" style="padding-bottom:10px;">
+                    <div style="position: relative;width: 1100px;margin: 0 auto;">
+                        <img src="http://lolmax.com/static/image/logo_01.png" style="width:40px;" class="max_logo breath"><div style="position: absolute;left:0px;bottom:10px;">
+                            <div style="float:left;margin-left: 20px"><a target="_blank" href="mailto:ning@dotamax.com"><i title="商务合作" class="fa fa-envelope-o" style="font-size: 16px;padding-top: 1px;"></i></a></div><div style="float:left;margin-left: 20px"><a target="_blank" href="/status/"><i title="状态" class="fa fa-heartbeat" style="font-size: 18px"></i></a></div><div style="float:left;margin-left: 20px">
+                                <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=ef26fe7efd134659b38b044ae44ae8342c20f1654d9c372fd094f96bd004819e">
+                                    <i title="反馈群
+				            :74188215" class="fa fa-qq" style="font-size: 16px;padding-top: 2px;"></i>
+                                </a>
+                            </div><div style="float:left;margin-left: 20px"><a target="_blank" href="/faq/"><i title="FAQ" class="fa fa-question-circle" style="font-size: 16px;padding-top: 2px;"></i></a></div><div style="float:left;margin-left: 20px">© dotamax.com</div>
+                        </div><div style="position: absolute;right:0px;bottom:10px;"><div style="float:right;margin-right: 20px"><a target="_blank" href="/summary/"><i title="统计" class="fa fa-bar-chart" style="font-size: 18px"></i></a></div><div style="float:right;margin-right: 20px"><a target="_blank" href="http://weibo.com/5606942020/profile?topnav=1&wvr=6"><i title="新浪微博" class="fa fa-weibo" style="font-size: 18px"></i></a></div><div style="float:right;margin-right: 20px"><a target="_blank" href="http://t.qq.com/dotamax?preview "><i title="腾讯微博" class="fa fa-tencent-weibo" style="font-size: 18px"></i></a></div><div style="float:right;margin-right: 20px"><a target="_blank" href="/share_history/">录入数据</a></div><div style="float:right;margin-right: 20px;"><a target="_blank" href="/joinus/" target="_blank">加入我们</a></div></div>
+                    </div>
+                </div>
+            </div><!-- end of footbar -->
+        </div>
+</body>
+</html>
