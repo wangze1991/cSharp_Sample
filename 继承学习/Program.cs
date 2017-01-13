@@ -19,6 +19,12 @@ namespace 继承学习
             int[] array4 = new int[3];
             IList<Parent> parents = new[] { c, b };
 
+            foreach (Parent p in parents)
+            {
+                p.WriteField();
+            }
+            Console.ReadKey();
+            return;
             //Console.WriteLine(c.field);
             //Console.ReadKey();
             //Enumerable.Range(1, 10).ToList().ForEach(new Program().Write);
