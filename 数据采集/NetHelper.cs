@@ -28,7 +28,7 @@ namespace 数据采集
              {
                  using (WebClient wc = new WebClient())
                  {
-                     wc.Encoding = Encoding.UTF8;
+                     wc.Encoding = Encoding.Default;
                      return wc.DownloadStringTaskAsync(url);
                  }
              }
