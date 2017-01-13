@@ -10,103 +10,101 @@ namespace Utils
 {
     public static class Conv
     {
-
         private static string key = "0000-0000-0000-0000";
 
         #region 数值转换
+
         /// <summary>
         /// 转换int类型
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static int ToInt(object str)
+        public static int ToInt<T>(T data)
         {
-            if (str == null || str == DBNull.Value) return 0;
-            int result = 0;
-            bool isValid = int.TryParse(str.ToString(), out result);
-            if (isValid) return result;
-            try
-            {
-                return Convert.ToInt32(ToDouble(str, 0));
-            }
-            catch
-            {
-                return 0;
-            }
+            return Conv.ToNullableInt(data) ?? 0;
         }
+
+        /// <summary>
+        /// 转换为可空泛型int
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static int? ToNullableInt<T>(T data)
+        {
+            if (data == null || Convert.IsDBNull(data)) return null;
+            int result = 0;
+            return int.TryParse(data.ToString(), out result) ? result : default(int?);
+        }
+
         /// <summary>
         /// 转换为double类型
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>double</returns>
-        public static double ToDouble(object obj)
+        public static double ToDouble<T>(T data)
         {
-            if (obj == null || obj == DBNull.Value) return 0d;
-            double result = 0d;
-            double.TryParse(obj.ToString(), out result);
-            return result;
+            return Conv.ToNullableDouble(data) ?? 0d;
         }
+
         /// <summary>
-        /// 四舍五入
+        /// 转换为可空泛型double
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="digits">小数位数</param>
+        /// <param name="obj"></param>
         /// <returns></returns>
-        public static double ToDouble(object obj, int digits)
+        public static double? ToNullableDouble<T>(T data)
         {
-            return Math.Round(ToDouble(obj), digits);
+            if (data == null || Convert.IsDBNull(data)) return null;
+            double result = 0d;
+            return double.TryParse(data.ToString(), out result) ? result : default(double?);
         }
 
         /// <summary>
         /// 转换为decimal
         /// </summary>
         /// <returns></returns>
-        public static decimal ToDecimal(object data)
+        public static decimal ToDecimal<T>(T data)
         {
-            if (data == null || data == DBNull.Value) return 0m;
-            decimal result = 0m;
-            decimal.TryParse(data.ToString(), out result);
-            return result;
+            return Conv.ToNullableDecimal(data) ?? 0m;
         }
 
         /// <summary>
-        /// 
+        /// 转换为可空泛型decimal
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="digits"></param>
         /// <returns></returns>
-        public static decimal ToDecimal(object data, int digits)
+        public static decimal? ToNullableDecimal<T>(T data)
         {
-            return Math.Round(ToDecimal(data), digits);
+            if (data == null||  Convert.IsDBNull(data)) return null;
+            decimal result = 0m;
+            return decimal.TryParse(data.ToString(), out result) ? result : default(decimal?);
         }
 
-        #endregion
+        #endregion 数值转换
+
         /// <summary>
         /// 转换为guid
         /// </summary>
         /// <param name="data"></param>
         /// <returns>如果为空 则返回Guid.Empty</returns>
-        public static Guid ToGuid(object data)
+        public static Guid ToGuid<T>(T data)
         {
-            if (data == null || data == DBNull.Value) return new Guid();
-            Guid guid;
-            return Guid.TryParse(data.ToString(), out guid) ? guid : Guid.Empty;
+            return Conv.ToNullableGuid(data) ?? Guid.Empty;
         }
 
         /// <summary>
-        /// 转换为Guid?
+        /// 转换为可空泛型guid
         /// </summary>
         /// <param name="data"></param>
         /// <returns>Guid?</returns>
-        public static Guid? ToGuidOrNull(object data)
+        public static Guid? ToNullableGuid<T>(T data)
         {
-            if (data == null || data == DBNull.Value) return null;
-            Guid guid = new Guid();
-            bool isValid = Guid.TryParse(data.ToString(), out guid);
-            if (isValid) return guid;
-            return null;
+            if (data == null || Convert.IsDBNull(data)) return null;
+            Guid guid = Guid.Empty;
+            return Guid.TryParse(data.ToString(), out guid) ? guid : default(Guid?);
         }
+
         #region bool值转换
+
         /// <summary>
         /// bool值转换
         /// </summary>
@@ -119,51 +117,71 @@ namespace Utils
             {
                 case "0":
                     return false;
+
                 case "1":
                     return true;
+
                 case "是":
                     return true;
+
                 case "否":
                     return false;
+
                 case "yes":
                     return true;
+
                 case "no":
                     return false;
+
                 default: return false;
             }
         }
 
-
-        #endregion
+        #endregion bool值转换
 
         #region 日期转化
 
-        #endregion
+        /// <summary>
+        /// 返回日期类型
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>如果转换不成功，返回当前时间</returns>
+        /// <remarks>
+        /// 方法一：Convert.ToDateTime(string)
+        ///string格式有要求，必须是yyyy-MM-dd hh:mm:ss
+        /// 方法二：Convert.ToDateTime(string, IFormatProvider)
+        /// DateTime dt;
+        ///DateTimeFormatInfo dtFormat = new System.GlobalizationDateTimeFormatInfo();
+        ///dtFormat.ShortDatePattern = "yyyy/MM/dd";
+        ///dt = Convert.ToDateTime("2011/05/26", dtFormat);
+        /// 方法三：DateTime.ParseExact()
+        /// string dateString = "20110526";
+        ///DateTime dt = DateTime.ParseExact(dateString, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
+        ///DateTime dt = DateTime.ParseExact(dateString, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+        /// </remarks>
+        public static DateTime ToDateTime<T>(T data ,string formatter="yyyy-MM-dd") {
+            return Conv.ToNullableDouble(data, formatter) ?? new DateTime();
+        }
 
-        #region 通用转换
-        public static T To<T>(object obj)
+        public static DateTime? ToNullableDouble<T>(T data, string formatter = "yyyy-MM-dd")
         {
-            if (obj == null) return default(T);//如果为空  返回默认值
-            if (obj is string && string.IsNullOrWhiteSpace(obj.ToString()))
-                return default(T);
-            Type type = typeof(T);
+            if (data == null || Convert.IsDBNull(data)) return null;
             try
             {
-                if (type.Name.ToLower().Equals("guid")) return (T)(object)new Guid(obj.ToString());
-                if (obj is IConvertible) return (T)Convert.ChangeType(obj, type);
-                return default(T);
+                return DateTime.ParseExact(data.ToString(), formatter, System.Globalization.CultureInfo.CurrentCulture);
             }
-            catch
-            {
-                return default(T);
+            catch {
+                return null;
             }
 
         }
-        #endregion
+
+        #endregion 日期转化
 
         #region dataTable转换
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
@@ -221,25 +239,11 @@ namespace Utils
             }
             return list as IEnumerable<T>;
         }
-        #endregion
 
-        #region 转换为json
-        //TODO 转换为json
-        /// <summary>
-        /// 转换为json
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static string ToJson(object data)
-        {
-            return "";
-        }
-        #endregion
-
+        #endregion dataTable转换
 
         #region 加密，解密
- 
-  
+
         /// <summary>
         /// 256位AES加密
         /// </summary>
@@ -247,7 +251,7 @@ namespace Utils
         /// <returns></returns>
         public static string Encrypt(string toEncrypt)
         {
-            // 256-AES key    
+            // 256-AES key
             byte[] keyArray = UTF8Encoding.UTF8.GetBytes(key);
             byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
 
@@ -269,7 +273,7 @@ namespace Utils
         /// <returns></returns>
         public static string Decrypt(string toDecrypt)
         {
-            // 256-AES key    
+            // 256-AES key
             byte[] keyArray = UTF8Encoding.UTF8.GetBytes(key);
             byte[] toEncryptArray = Convert.FromBase64String(toDecrypt);
 
@@ -284,7 +288,6 @@ namespace Utils
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
 
-        #endregion
-
+        #endregion 加密，解密
     }
 }
