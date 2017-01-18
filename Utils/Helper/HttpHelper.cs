@@ -10,8 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using System.Web;
 using System.Text.RegularExpressions;
-
-namespace Utils
+namespace Utils.Helper 
 {
     public class HttpHelper
     {
@@ -41,8 +40,7 @@ namespace Utils
                 //request.Timeout = _timeOut;
                 request.Accept = _accept;
                 request.UserAgent = _userAgent;
-           
-                if (!strCookie.IsNullOrEmpty())
+                if (strCookie.IsNotBlank())
                 {
                     //request.Host = new Uri(url).Host;
                     //request.Headers.Add("Cookie", strCookie);
@@ -58,7 +56,7 @@ namespace Utils
                     var collection = strCokAddCol(strCookie, url);
                     request.CookieContainer.Add(collection);
                 }
-                if (isPost && !postString.IsNullOrEmpty())
+                if (isPost && postString.IsNotBlank())
                 {
                     byte[] byteRequest = Encoding.UTF8.GetBytes(postString);
                     Stream stream = request.GetRequestStream();
@@ -148,6 +146,7 @@ namespace Utils
         #endregion
 
         #endregion
+
         #region 异步
 
         public async Task<string> GetStringAsync(string url)

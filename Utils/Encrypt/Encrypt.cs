@@ -11,8 +11,9 @@ namespace Utils
     {
         #region "定义加密字串变量"
         private static readonly SymmetricAlgorithm mCSP = new DESCryptoServiceProvider();  //声明对称算法变量
-        private const string defaultKey = "fGhjsK78";
-        private const string defaultCiv = "ss8edKe3rTsfhH43c+ddwKUs";
+        private const string _defaultKey = "fGhjsK78";
+        private const string _defaultCiv = "ss8edKe3rTsfhH43c+ddwKUs";
+        private const string _key = "0000-0000-0000-0000";
         #endregion
         /// <summary>
         /// 实例化
@@ -35,11 +36,11 @@ namespace Utils
         {
             if (String.IsNullOrEmpty(civ))
             {
-                civ = defaultCiv;
+                civ = _defaultCiv;
             }
             if (String.IsNullOrEmpty(key))
             {
-                key = defaultKey;
+                key = _defaultKey;
             }
             //CreateEncryptor创建(对称数据)加密对象
             //定义基本的加密转换运算
@@ -100,11 +101,11 @@ namespace Utils
         {
             if (String.IsNullOrEmpty(civ))
             {
-                civ = defaultCiv;
+                civ = _defaultCiv;
             }
             if (String.IsNullOrEmpty(key))
             {
-                key = defaultKey;
+                key = _defaultKey;
             }
             //定义基本的加密转换运算
             //用指定的密钥和初始化向量创建对称数据解密标准
@@ -164,7 +165,10 @@ namespace Utils
             var hashByteArray = algorithm.ComputeHash(Encoding.UTF8.GetBytes(saltAndPassword));
             return BitConverter.ToString(hashByteArray).Replace("-", "");
         }
-
+        /// <summary>
+        /// 生成随机数
+        /// </summary>
+        /// <returns></returns>
         public static string GenerateOrderNumber()
         {
             string strDateTimeNumber = DateTime.Now.ToString("yyyyMMddHHmmssms");
@@ -194,5 +198,54 @@ namespace Utils
             }
             return (int)(randomResult % numSeeds) + 1;
         }
+
+
+        #region 加密，解密
+
+        /// <summary>
+        /// 256位AES加密
+        /// </summary>
+        /// <param name="toEncrypt"></param>
+        /// <returns></returns>
+        public static string AesEncrypt(string toEncrypt)
+        {
+            // 256-AES key
+            byte[] keyArray = UTF8Encoding.UTF8.GetBytes(_key);
+            byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
+
+            RijndaelManaged rDel = new RijndaelManaged();
+            rDel.Key = keyArray;
+            rDel.Mode = CipherMode.ECB;
+            rDel.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform cTransform = rDel.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+        }
+
+        /// <summary>
+        /// 256位AES解密
+        /// </summary>
+        /// <param name="toDecrypt"></param>
+        /// <returns></returns>
+        public static string AesDecrypt(string toDecrypt)
+        {
+            // 256-AES key
+            byte[] keyArray = UTF8Encoding.UTF8.GetBytes(_key);
+            byte[] toEncryptArray = Convert.FromBase64String(toDecrypt);
+
+            RijndaelManaged rDel = new RijndaelManaged();
+            rDel.Key = keyArray;
+            rDel.Mode = CipherMode.ECB;
+            rDel.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform cTransform = rDel.CreateDecryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+            return UTF8Encoding.UTF8.GetString(resultArray);
+        }
+
+        #endregion 加密，解密
     }
 }

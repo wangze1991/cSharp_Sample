@@ -10,7 +10,7 @@ namespace Utils
 {
     public static class Conv
     {
-        private static string key = "0000-0000-0000-0000";
+    
 
         #region 数值转换
 
@@ -191,7 +191,7 @@ namespace Utils
         }
 
         /// <summary>
-        /// DataRow转Poco
+        /// DataRow转实体类
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="row"></param>
@@ -205,6 +205,7 @@ namespace Utils
                 {
                     if (DBNull.Value != row[item.Name])
                     {
+                        //判断是否是泛型类
                         if (!item.PropertyType.IsGenericType)
                         {
                             item.SetValue(entity, Convert.ChangeType(row[item.Name], item.PropertyType), null);
@@ -242,52 +243,6 @@ namespace Utils
 
         #endregion dataTable转换
 
-        #region 加密，解密
-
-        /// <summary>
-        /// 256位AES加密
-        /// </summary>
-        /// <param name="toEncrypt"></param>
-        /// <returns></returns>
-        public static string Encrypt(string toEncrypt)
-        {
-            // 256-AES key
-            byte[] keyArray = UTF8Encoding.UTF8.GetBytes(key);
-            byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
-
-            RijndaelManaged rDel = new RijndaelManaged();
-            rDel.Key = keyArray;
-            rDel.Mode = CipherMode.ECB;
-            rDel.Padding = PaddingMode.PKCS7;
-
-            ICryptoTransform cTransform = rDel.CreateEncryptor();
-            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-
-            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
-        }
-
-        /// <summary>
-        /// 256位AES解密
-        /// </summary>
-        /// <param name="toDecrypt"></param>
-        /// <returns></returns>
-        public static string Decrypt(string toDecrypt)
-        {
-            // 256-AES key
-            byte[] keyArray = UTF8Encoding.UTF8.GetBytes(key);
-            byte[] toEncryptArray = Convert.FromBase64String(toDecrypt);
-
-            RijndaelManaged rDel = new RijndaelManaged();
-            rDel.Key = keyArray;
-            rDel.Mode = CipherMode.ECB;
-            rDel.Padding = PaddingMode.PKCS7;
-
-            ICryptoTransform cTransform = rDel.CreateDecryptor();
-            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-
-            return UTF8Encoding.UTF8.GetString(resultArray);
-        }
-
-        #endregion 加密，解密
+        
     }
 }

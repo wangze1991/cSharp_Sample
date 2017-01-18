@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
-namespace Utils
+namespace Utils.Helper
 {
     /// <summary>
     ///表达式树扩展方法

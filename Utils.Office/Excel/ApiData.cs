@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using Utils.Helper;
 namespace Utils.Office
 {
     public class ApiData:IApiData

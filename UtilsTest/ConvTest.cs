@@ -27,8 +27,12 @@ namespace UtilsTest
             Guid guid = Guid.NewGuid();
             Assert.IsNull(Conv.ToNullableGuid("abc"));
             Assert.AreNotEqual<Guid?>(Conv.ToNullableGuid(guid.ToString()),Guid.Empty);
-
             Assert.AreEqual(Conv.ToNullableGuid(guid),guid);
+        }
+
+        [TestMethod]
+        public void TestStaticField() {
+
         }
     }
 }

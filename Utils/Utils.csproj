@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -50,30 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumExample.cs" />
     <Compile Include="Encrypt\Encrypt.cs" />
-    <Compile Include="Extensions\DateTimeHelper.cs" />
-    <Compile Include="Extensions\LinqHelper.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\LinqHelper.cs" />
+    <Compile Include="Helper\DateTimeHelper.cs" />
+    <Compile Include="Helper\NetHelper.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
+    <Compile Include="Helper\XmlHelper.cs" />
     <Compile Include="Log\LogWrapper.cs" />
-    <Compile Include="Net\HttpHelper.cs" />
+    <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Conv\Conv.cs" />
     <Compile Include="Extensions\ConverHelper.cs" />
-    <Compile Include="Extensions\PredicateHelper.cs" />
+    <Compile Include="Helper\PredicateHelper.cs" />
     <Compile Include="Extensions\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Net\" />
     <Folder Include="Reflection\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

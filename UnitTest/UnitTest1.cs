@@ -1,6 +1,8 @@
 ﻿using System;
 using Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace UnitTest
 {
@@ -18,12 +20,22 @@ namespace UnitTest
         [TestMethod]
         public void TestLog()
         {
-            LogWrapper.Info("测试一下");
+           // LogWrapper.Info("测试一下");
         }
         [TestMethod]
         public void TestDebugLog()
         {
-            LogWrapper.Debug("测试一下");
+            //LogWrapper.Debug("测试一下");
+        }
+
+        [TestMethod]
+        public void TestThreadExample() {
+          
+  
+
+
         }
     }
+
+    
 }

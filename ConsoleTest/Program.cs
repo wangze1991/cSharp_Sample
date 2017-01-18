@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sample.Repository;
 using System.Reflection;
+using System.Threading;
 namespace ConsoleTest
 {
     class Program
@@ -13,9 +14,18 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
 
-            int[] list = { 1,2,3,4,5,6};
-            Console.WriteLine(list);
+            ThreadTest tt = new ThreadTest();
+
+            for (int i = 0; i < 10; i++)
+            {
+                Task.Factory.StartNew(tt.getA);
+                Task.Factory.StartNew(tt.getB);
+            }
             Console.ReadKey();
+
+            //int[] list = { 1,2,3,4,5,6};
+            //Console.WriteLine(list);
+            //Console.ReadKey();
 
             //AppDomain currentDomain = AppDomain.CurrentDomain;
             //IRepository<Student> studentRepository = new EfRepository<Student>(new SchoolContext());
@@ -71,4 +81,36 @@ namespace ConsoleTest
     public class B {
         public string Name { get; set; }
     }
+
+
+    public class ThreadTest
+    {
+        private Object thisLock = new Object();    
+
+        public int i { get; set; }
+
+
+
+        public void getA()
+        {
+            lock (thisLock)
+            {
+                i++;
+                Thread.Sleep(1);
+                Console.WriteLine(i);
+            }
+         
+        }
+        public void getB()
+        {
+            lock (thisLock)
+            {
+                i++;
+                Thread.Sleep(1);
+                Console.WriteLine(i);
+            }
+        }
+
+    }
+
 }

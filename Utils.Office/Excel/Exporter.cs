@@ -7,6 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using System.Collections;
 using System.IO;
+using Utils.Helper;
 using Newtonsoft.Json.Linq;
 namespace Utils.Office
 {
@@ -34,7 +35,7 @@ namespace Utils.Office
         {
             var current = HttpContext.Current;
             var exporter = new Exporter();
-            if (!current.Request["titles"].IsNullOrEmpty())
+            if (current.Request["titles"].IsNotBlank())
             {
                 exporter.SetTitle(JsonConvert.DeserializeObject<List<List<Column>>>(current.Request["titles"]));
             }
@@ -74,7 +75,7 @@ namespace Utils.Office
         {
             try
             {
-                int currentRowIndex =_head.IsNullOrEmpty()?0:1, currentColIndex = 0;
+                int currentRowIndex =_head.IsBlank()?0:1, currentColIndex = 0;
                 Dictionary<int, int> currenteHeadRow = new Dictionary<int, int>();//放置单元格所占行数
                 Dictionary<int ,string> fieldIndex = new Dictionary<int, string>();//获取每列元素所对应的
                 Func<int, int> getCurrentHeadRow = cell => currenteHeadRow.ContainsKey(cell) ? currenteHeadRow[cell] : 0;   
@@ -98,7 +99,7 @@ namespace Utils.Office
                             this._export.MergeCell(currentRowIndex, currentRowIndex + column.rowspan - 1, currentColIndex, currentColIndex + column.colspan - 1);
                         }
                         //记录每一列所对应的field
-                        if (column.colspan == 1 && !column.field.IsNullOrEmpty())
+                        if (column.colspan == 1 && column.field.IsNotBlank())
                         {
                             fieldIndex[currentColIndex] =column.field;
                         }
@@ -114,7 +115,7 @@ namespace Utils.Office
                 }
                 #endregion
                 #region  设置标题样式
-                if (!_head.IsNullOrEmpty())
+                if (_head.IsNotBlank())
                 {
                     _export.FillData(0, 0, _head);
                     _export.SetHeadTitleStyle(fieldIndex.Count);
@@ -122,7 +123,7 @@ namespace Utils.Office
                 #endregion
                 #region 填充数据
                 //填充数据
-                var index = _head.IsNullOrEmpty() ? 0 : 1;
+                var index = _head.IsBlank()? 0 : 1;
                 foreach (var x in (_dataSource as IEnumerable<dynamic>))
                 {
                     foreach (var item in fieldIndex)
@@ -148,7 +149,7 @@ namespace Utils.Office
         public void DownLoad()
         {
             var stream = _export.SaveAsStream();
-            Utils.HttpHelper.DownloadExcel(stream, Path.Combine(DateTime.Now.ToString("yyyyMMdd"), ".xls"));
+            HttpHelper.DownloadExcel(stream, Path.Combine(DateTime.Now.ToString("yyyyMMdd"), ".xls"));
             return;
         }
     }
