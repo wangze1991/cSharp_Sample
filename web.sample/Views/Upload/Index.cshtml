@@ -1,0 +1,175 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ajax iframe图片上传</title>
+    <style type="text/css">
+        .upload-file {
+            left: 0;
+            top: 0;
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            opacity: .01;
+            filter: Alpha(opacity=1);
+            cursor: pointer;
+        }
+
+        .upload-button {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            min-width: 60px;
+            height: 36px;
+            line-height: 36px;
+            border: 1px solid #DFDFDF;
+            border-radius: 2px;
+            overflow: hidden;
+            background-color: #fff;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class="upload-button">
+            <!--
+             <form target="" enctype="multipart/form-data" action="/upload/UploadImage" method="post">
+            -->
+            <input type="file" name="file" class="upload-file" id="file" />
+            <!--
+            </form>
+            -->
+            <!--
+              <span>上传</span>
+            -->
+            <a>选择文件</a>
+
+        </div>
+        <div>
+            <input type="button" id="btn-upload" value="上传"/>
+        </div>
+
+    </div>
+    <iframe name="upload-iframe" class="upload-iframe" style="display:none"></iframe>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.ajaxFileUpload.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script>
+        $(function () {
+            //reference http://www.cnblogs.com/kissdodog/archive/2012/12/15/2819025.html
+            $('.upload-button').on('change', '#file', function () {
+                    $.ajaxFileUpload({
+                        url: '/upload/UploadImage', //用于文件上传的服务器端请求地址
+                        secureuri: false, //一般设置为false
+                        fileElementId: 'file', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                        dataType: 'JSON', //返回值类型 一般设置为json
+                        success: function (data, status)  //服务器成功响应处理函数
+                        {
+                            alert(data);
+                        },
+                        error: function (data, status, e)//服务器响应失败处理函数
+                        {
+                            alert(e);
+                        }
+                    });
+            });
+            //$('#btn-upload').on('click', function () {
+            //    $.ajaxFileUpload({
+            //        url: '/upload/UploadImage', //用于文件上传的服务器端请求地址
+            //        secureuri: false, //一般设置为false
+            //        fileElementId: 'file', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+            //        dataType: 'HTML', //返回值类型 一般设置为json
+            //        success: function (data, status)  //服务器成功响应处理函数
+            //        {
+            //            alert(data);
+            //        },
+            //        error: function (data, status, e)//服务器响应失败处理函数
+            //        {
+            //            alert(e);
+            //        }
+            //    });
+            //});
+
+        });
+    </script>
+    <script>
+        //$(function () {
+        //    var iframeName = 'upload-iframe';
+        //    !$('.' + iframeName).length && $(document).append('<iframe name="upload-iframe" class="upload-iframe"></iframe>');
+        //    $('.upload-file').each(function () {
+        //        var $that = $(this);
+        //        var $form = $that.parent('form');
+        //        $form.attr('target', iframeName);
+        //        $that.off('change').on('change', function () {
+        //            changeAction($(this))
+        //        });
+        //    });
+
+
+        //    function changeAction($input) {
+        //        //TODO 判断上传的文件的格式
+        //        $input.parent().submit();
+        //        var $iframe = $('.' + iframeName), t = setInterval(function () {
+        //            var res;
+        //            try {
+        //                res = $iframe.contents().find('body').html();//获取iframe的返回的内容
+        //            } catch (e) {
+        //                alert('不支持跨域');
+        //                clearInterval(t);
+        //            }
+        //            if (res) {
+        //                window.console&&console.log(res);
+        //                clearInterval(t);
+        //                $iframe.contents().find('body').html('');
+        //                try {
+        //                    //console.log(res);
+        //                    var data = $.parseJSON(res);
+        //                    //clearFileInput($input.get(0));
+        //                    alert(data.isSuccess);
+
+        //                }
+        //                catch (e) {
+        //                    alert(e.description);
+        //                }
+        //            }
+
+        //        }, 30);
+        //    }
+
+        //    function clearFileInput(file) {
+        //        if (file.outerHTML) {  // for IE, Opera, Safari, Chrome
+        //            file.outerHTML = file.outerHTML;
+        //        } else { // FF(包括3.5)
+        //            file.value = "";
+        //        }
+        //    }
+
+        //});
+    </script>
+    <script>
+        ; (function () {
+
+            //function Uploader(opt) {
+            //    this.options = $.extend({},opt);
+            //}
+            //Uploader.defaultSetting = {
+
+            //};
+            //Uploader.prototype.init = function () {
+
+            //};
+
+
+
+        })();
+    </script>
+</body>
+</html>

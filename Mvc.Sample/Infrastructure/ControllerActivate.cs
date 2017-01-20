@@ -19,7 +19,7 @@ namespace Mvc.Sample
         }
         private IDictionary<string, string> GetQueryParam(string json)
         {
-            if (json.IsNullOrEmpty()) return null;
+            if (string.IsNullOrWhiteSpace(json)) return null;
             IDictionary<string, string> arguments = new Dictionary<string, string>();
             JObject jObject = JObject.Parse(json);
             foreach (var item in jObject)

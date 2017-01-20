@@ -19,8 +19,8 @@ namespace FrmBaiduDictionary
         public Word(string word)
         {
             this.Words = word;
-            this.From = Words.IsChinese() ? "zh" : "en";
-            this.To = Words.IsChinese() ? "en" : "zh";
+            //this.From = Words.IsChinese() ? "zh" : "en";
+           // this.To = Words.IsChinese() ? "en" : "zh";
         }
 
         /// <summary>
@@ -28,7 +28,8 @@ namespace FrmBaiduDictionary
         /// </summary>
         /// <returns></returns>
         public string ToUrl() {
-            return string.Format("{0}?client_id={1}&q={2}&from={3}&to={4}", _url,_clientId, this.Words.UrlEncode(), this.From, this.To);
+            return "";
+           // return string.Format("{0}?client_id={1}&q={2}&from={3}&to={4}", _url,_clientId, this.Words.UrlEncode(), this.From, this.To);
         }
     }
 }

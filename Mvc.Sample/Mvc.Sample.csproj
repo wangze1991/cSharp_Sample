@@ -255,7 +255,6 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="App_LocalResources\" />
     <Folder Include="Views\Af\" />
   </ItemGroup>
   <ItemGroup>

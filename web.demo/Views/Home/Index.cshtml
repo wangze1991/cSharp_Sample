@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Request.Browser.Browser</h2>
+
+
+
+
+@section script{
+    <script>
+        $(function () {
+            page.init();
+           
+        });
+
+
+        var page = {
+
+            init: function () {
+                $.ajax({
+                    url: '/home/GetIeJson',
+                    type: 'post',
+                    //dataType: 'json',
+                    success: function (data) {
+                        //alert(data);
+                        if (window && window.console) {
+                            console.log(data);
+                        } else {
+                            alert(data.a);
+                            alert(1);
+                            alert(typeof data === '[object object]')
+                        }
+                    }
+                })
+            }
+            ,BindEvent: {}
+
+        };
+    </script>
+
+}
+

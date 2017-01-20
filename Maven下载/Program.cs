@@ -10,8 +10,8 @@ namespace Maven下载
     {
         static void Main(string[] args)
         {
-          string str=  Utils.HttpHelper.GetHtml("http://repo.maven.apache.org/maven2/archetype-catalog.xml");
-          Console.WriteLine(str);
+          //string str=  Utils.HttpHelper.GetHtml("http://repo.maven.apache.org/maven2/archetype-catalog.xml");
+          //Console.WriteLine(str);
           Console.ReadKey();
         }
     }

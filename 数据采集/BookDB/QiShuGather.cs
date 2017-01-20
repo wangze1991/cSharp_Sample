@@ -32,7 +32,7 @@ namespace 数据采集
 
             for (int p = start; p <= end; p++)
             {
-                string url = this.BookUrl.StringFormat((int)classify, p);
+                string url = string.Format(this.BookUrl, (int)classify, p);
                 await GetSinglePageBook(url);
             }
 

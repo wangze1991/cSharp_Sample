@@ -21,7 +21,7 @@ namespace FrmBaiduDictionary.Common
         /// <returns></returns>
         public static T DeserializeJson<T>(this string str)where T:class
         {
-            if (str.IsNullOrEmpty()) return null;
+            if (string.IsNullOrWhiteSpace(str)) return null;
            return JsonConvert.DeserializeObject<T>(str);
         }
         /// <summary>
