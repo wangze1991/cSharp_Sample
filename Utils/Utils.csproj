@@ -51,6 +51,7 @@
     <Compile Include="Draw\ImageCopper.cs" />
     <Compile Include="EnumExample.cs" />
     <Compile Include="Encrypt\Encrypt.cs" />
+    <Compile Include="Helper\AttributeHelper.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Helper\LinqHelper.cs" />
     <Compile Include="Helper\DateTimeHelper.cs" />

@@ -3,7 +3,6 @@ jQuery.extend({
     createUploadIframe: function (id, uri) {
         //create frame
         var frameId = 'jUploadFrame' + id;
-
         if (window.ActiveXObject) {
             var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');
             if (typeof uri == 'boolean') {
@@ -21,9 +20,7 @@ jQuery.extend({
         io.style.position = 'absolute';
         io.style.top = '-1000px';
         io.style.left = '-1000px';
-
         document.body.appendChild(io);
-
         return io
     },
     createUploadForm: function (id, fileElementId) {

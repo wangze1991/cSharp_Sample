@@ -7,10 +7,16 @@ using System.IO;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading;
+using System.Diagnostics;
 namespace Web.Demo.Controllers
 {
     public class UploadController : BaseController
     {
+
+        private static int j = 0;
+        private int i = 0;
+
         /// <summary>
         ///  allowedExtensions: ['gif', 'png', 'jpg', 'jpeg', 'pdf', 'rar', 'zip'],
         /// </summary>
@@ -118,6 +124,32 @@ namespace Web.Demo.Controllers
             }
             return null;
         }
+
+
+
+        #region 测试
+        /// <summary>
+        /// 此结果证明，.net mvc针对每次请求（action），都实例化一个controller，当然，这样属性其实应该没什么卵用
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetOne() {
+        
+            i++;
+            Thread.Sleep(1000);
+            Debug.WriteLine(i);
+ 
+            return ToJson(i);
+        }
+
+
+        public ActionResult GetTwo()
+        {
+            i++;
+            Thread.Sleep(1000);
+            Debug.WriteLine(i);
+            return ToJson(i);
+        }
+        #endregion
 
 
     }

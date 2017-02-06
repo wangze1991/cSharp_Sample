@@ -208,5 +208,30 @@
 
         })();
     </script>
+
+    <!--测试-->
+    <script type="text/javascript">
+        $(function () {
+            for (var i = 0, max = 20; i < max; i++) {
+                getAjaxValue('/Upload/GetOne');
+                getAjaxValue('/Upload/GetTwo');
+            }
+        });
+
+        function getAjaxValue(url) {
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url:url
+            }).done(function (data) {
+                console.log(data);
+
+            }).fail(function () {
+
+            });
+
+        }
+
+    </script>
 </body>
 </html>

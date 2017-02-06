@@ -11,7 +11,7 @@ namespace Utils.Helper
     {
         #region 扩展方法
         /// <summary>
-        /// 去重
+        /// 去除重复
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TProperty"></typeparam>

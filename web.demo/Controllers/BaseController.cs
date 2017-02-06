@@ -27,7 +27,7 @@ namespace Web.Demo.Controllers
             }
             else
             {
-                return Json(obj,"text/html",JsonRequestBehavior.AllowGet);
+                return Json(obj, "application/json", JsonRequestBehavior.AllowGet);
             }
         }
         [NonAction]
