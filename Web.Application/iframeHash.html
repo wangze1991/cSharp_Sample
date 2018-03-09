@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>iframe 跨域</title>
+</head>
+<body>
+
+
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            var $iframe = $('<iframe src=""></iframe');
+            $('body').append($iframe);
+            $iframe.prop('src', 'http://www.chuangxb.com:8080/hello/iframe?url=' + encodeURIComponent('http://localhost:10484'))
+            var state = 0;
+            $iframe.on('load', function () {
+                console.log($(this)[0].contentWindow.location.hash.substring(1));
+                alert('1');
+            });
+
+
+        });
+
+    </script>
+</body>
+
+</html>

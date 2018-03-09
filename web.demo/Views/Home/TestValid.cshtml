@@ -1,43 +1,40 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>jquer-validate学习</title>
 </head>
 <body>
-    <div> 
+    <div>
         <form id="valid-form" method="post" action="">
             <!-- <select name="country" data-valid-rule="{required:true}" data-valid-msg="{required:'请选择国家'}">-->
             <!--
                 注意validate用select的时候，要value=''，当用errorRePlacement时候，要注意文档结构，如果没有对应的dom结构，不显示错误-->
             <select name="country" data-rule-required="true" data-msg-required="必填">
-                <option value="" >--请选择--</option>
+                <option value="">--请选择--</option>
                 <option>中国</option>
                 <option>印度</option>
             </select>
-            <input type="submit" value="提交"/>
+            <input type="submit" value="提交" />
         </form>
     </div>
     <script src="~/Scripts/lib/validate/lib/jquery-1.11.1.js"></script>
     <script src="~/Scripts/lib/validate/dist/jquery.validate.min.js"></script>
     <script>
         $(function () {
-            var $form=$('#valid-form'),
-                option={
-                submitHandler: function (form) {
-                    alert(1);
-                }
-            };
-            $form.validate(getValidConfig($form,option));
+            var $form = $('#valid-form'),
+                option = {
+                    submitHandler: function (form) {
+                        alert(1);
+                    }
+                };
+            $form.validate(getValidConfig($form, option));
 
         });
-        function getValidConfig($form,config){
+        function getValidConfig($form, config) {
             var rules = config['rules'] = {},
                 messages = config['messages'] = {};
             //$('input,select,textarea', $form).each(function () {

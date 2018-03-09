@@ -28,6 +28,7 @@ namespace _1230冒泡排序
             foreach (var i in intArray)
             {
                 Console.Write(" {0}",i);
+                Console.WriteLine("");
             }
             Console.ReadKey();
         }

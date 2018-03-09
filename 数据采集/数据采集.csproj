@@ -59,6 +59,7 @@
     <Compile Include="BookDB\BookClassify.cs" />
     <Compile Include="BookDB\BookGatherBase.cs" />
     <Compile Include="BookDB\QiShuGather.cs" />
+    <Compile Include="ImageSave.cs" />
     <Compile Include="IRegexHtml.cs" />
     <Compile Include="Movie\Film.cs" />
     <Compile Include="Movie\MovieGather.cs" />

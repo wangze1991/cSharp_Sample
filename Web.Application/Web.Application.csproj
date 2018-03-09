@@ -200,6 +200,7 @@
     <Content Include="EasyUiWithRequireJs\demo.html" />
     <Content Include="Form提交表单数据.aspx" />
     <Content Include="form表单提交.html" />
+    <Content Include="iframeHash.html" />
     <Content Include="image\loading.gif" />
     <Content Include="jquey插件学习.html" />
     <Content Include="Ashx\Template.ashx" />
